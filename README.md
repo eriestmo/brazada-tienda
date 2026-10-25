@@ -23,5 +23,5 @@ Los productos están en la lista `PRODUCTS` del mismo archivo.
 - Horario semanal, tipos de clase, planes y fecha de pago (el 5 de cada mes por SINPE Móvil).
 - Cuentas de alumnos: reservar, cambiar fecha o cancelar hasta 12 horas antes, y ver el próximo pago y el historial.
 - Panel de la profe: agenda del día, alumnos y confirmación de pagos.
-- **Modo demostración:** las cuentas y reservas se guardan solo en el navegador. Para uso real se conecta la capa `API` a una base de datos (por ejemplo Supabase).
-- Cuentas de prueba: alumno `demo@brazada.cr` / `demo1234`, profe `profe@brazada.cr` / `profe1234`.
+- Datos en Supabase. El esquema, las reglas de seguridad (RLS) y las funciones están en `supabase/schema.sql`; se ejecuta en Supabase > SQL Editor.
+- Para dar acceso de profe: `update public.profiles set role = 'profe' where email = '...';`
