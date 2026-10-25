@@ -218,7 +218,7 @@
     .toast.show { opacity:1;transform:translate(-50%,0);pointer-events:auto; }
     .toast button { border:0;border-radius:999px;background:var(--agua);color:var(--on-accent);font-weight:700;padding:7px 11px;cursor:pointer;white-space:nowrap; }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
-    @media (max-width:720px) { .navlinks { display:none; } .hero { grid-template-columns:1fr; padding-top:42px; } .pool-panel { min-height:330px; } .steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .teacher-card { grid-template-columns:1fr; } .teacher-photo { min-height:220px; } }
+    @media (max-width:720px) { .navlinks a:not([href="clases.html"]) { display:none; } .navlinks { margin-left:auto; margin-right:12px; } .hero { grid-template-columns:1fr; padding-top:42px; } .pool-panel { min-height:330px; } .steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .teacher-card { grid-template-columns:1fr; } .teacher-photo { min-height:220px; } }
     @media (min-width:700px) { .grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; } .filters { grid-template-columns:1fr auto; align-items:center; } .filter-row.categories { grid-column:1/-1; } }
     @media (min-width:1000px) { .grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
     @media (max-width:480px) {
@@ -246,6 +246,7 @@
       .cart-dialog { border-radius:0; }
     }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important;transition:none!important;animation:none!important; } }
+      .ig-link { color:var(--lila-ink);font-weight:700; }
   </style>
 </head>
 <body>
@@ -257,7 +258,7 @@
         Brazada
       </a>
       <nav class="navlinks" aria-label="Navegación principal">
-        <a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a>
+        <a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a><a href="clases.html">Clases</a>
       </nav>
       <button class="cart-open" type="button" data-action="open-cart">
         Carrito <span class="count" id="cart-count" aria-live="polite">0</span>
@@ -327,9 +328,10 @@
           </div>
           <div class="teacher-copy">
             <div class="eyebrow">Quién está detrás de Brazada</div>
-            <h2>La profe</h2>
-            <p>Soy profesora de natación para niños y adultos. Todo lo que vendo aquí lo uso o lo recomiendo en clase, así que si tiene dudas con una talla o con qué gafas elegir, pregúnteme por WhatsApp.</p>
+            <h2>Profe Emily Duncan</h2>
+            <p>Soy Emily, profesora de natación para niños y adultos. Todo lo que vendo aquí lo uso o lo recomiendo en clase, así que si tiene dudas con una talla o con qué gafas elegir, pregúnteme por WhatsApp.</p>
             <div class="facts"><span class="fact">Clases para niños y adultos</span><span class="fact">Asesoría de tallas sin costo</span><span class="fact">Entrega en la piscina</span></div>
+            <p><a class="ig-link" href="https://www.instagram.com/emily_natacion/" target="_blank" rel="noopener">Sígala en Instagram: @emily_natacion</a> · <a class="ig-link" href="clases.html">Reserve una clase</a></p>
           </div>
         </article>
       </div>
@@ -351,9 +353,9 @@
     <div class="wrap">
       <div class="footer-row">
         <div><a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#B175FF"/><path d="M2 21c6-5 11 5 18 0s12 5 18 0v17H2z" fill="#45B7D1"/><path d="M2 20c6-5 11 5 18 0s12 5 18 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>Brazada</a><div class="fineprint">Tienda de natación en Costa Rica</div></div>
-        <nav class="footer-links" aria-label="Enlaces del pie"><a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a></nav>
+        <nav class="footer-links" aria-label="Enlaces del pie"><a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a><a href="clases.html">Clases y reservas</a><a href="https://www.instagram.com/emily_natacion/" target="_blank" rel="noopener">Instagram @emily_natacion</a></nav>
       </div>
-      <p class="fineprint">Prototipo para revisión: productos, precios y números son de ejemplo.</p>
+      <p class="fineprint">Prototipo para revisión: productos y precios son de ejemplo.</p>
     </div>
   </footer>
 
@@ -378,8 +380,8 @@
 
     // Configuración del negocio: edite estos datos antes de publicar la tienda.
     const CONFIG = {
-      whatsapp: "",   // Número de la profe con código de país, ej. "5068XXXXXXX". Vacío: WhatsApp deja elegir el contacto.
-      sinpe: { numero: "8XXX-XXXX", nombre: "Nombre de la profe" }, // EJEMPLO
+      whatsapp: "50683307672",   // Número de la profe con código de país (506 = Costa Rica).
+      sinpe: { numero: "8330-7672", nombre: "Emily Duncan" },
       entregas: [
         { id: "clase", nombre: "Entrega en clase", detalle: "En la piscina, en su próxima clase.", costo: 0 },
         { id: "gam", nombre: "Mensajería GAM", detalle: "San José, Heredia, Alajuela y Cartago. 1 a 2 días hábiles.", costo: 3000, direccion: true },

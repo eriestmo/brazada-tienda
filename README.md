@@ -17,3 +17,11 @@ Al inicio del `<script>` en `index.html` está el bloque `CONFIG`:
 Los productos están en la lista `PRODUCTS` del mismo archivo.
 
 > Prototipo para revisión: los productos, precios y números son de ejemplo.
+
+## Clases y reservas (`clases.html`)
+
+- Horario semanal, tipos de clase, planes y fecha de pago (el 5 de cada mes por SINPE Móvil).
+- Cuentas de alumnos: reservar, cambiar fecha o cancelar hasta 12 horas antes, y ver el próximo pago y el historial.
+- Panel de la profe: agenda del día, alumnos y confirmación de pagos.
+- **Modo demostración:** las cuentas y reservas se guardan solo en el navegador. Para uso real se conecta la capa `API` a una base de datos (por ejemplo Supabase).
+- Cuentas de prueba: alumno `demo@brazada.cr` / `demo1234`, profe `profe@brazada.cr` / `profe1234`.

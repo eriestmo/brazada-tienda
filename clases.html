@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Reserve clases de natación con Emily Duncan en Costa Rica. Consulte horarios, planes y pagos por SINPE Móvil.">
+  <meta name="theme-color" content="#F4FAFC">
+  <title>Clases de natación · Brazada</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23B175FF'/%3E%3Cpath d='M2 22c6-5 10 5 18 0s12 5 18 0v18H2z' fill='%2345B7D1'/%3E%3Cpath d='M2 20c6-5 10 5 18 0s12 5 18 0' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme:light;
+      --bg:#F4FAFC;--surface:#FFFFFF;--tile:#E6F4F8;--ink:#13212C;--muted:#56687A;--line:#D5E6EC;
+      --lila:#B175FF;--agua:#45B7D1;--lila-ink:#7B3FE0;--agua-ink:#167C93;
+      --lila-soft:#F1E7FF;--agua-soft:#DDF2F7;--on-accent:#13212C;
+      --ok:#287A58;--ok-soft:#E1F3E9;--warn:#94630C;--warn-soft:#FFF0D2;--bad:#B42318;--bad-soft:#FDE8E7;
+      --display:"Bricolage Grotesque","Arial Rounded MT Bold",Arial,sans-serif;
+      --body:"Figtree",Arial,sans-serif;--gutter:max(16px,env(safe-area-inset-left));--shadow:0 14px 38px rgba(19,33,44,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0C171E;--surface:#13222B;--tile:#172C36;--ink:#E7F2F6;--muted:#9AB0BC;--line:#22394A;--lila-ink:#C9A2FF;--agua-ink:#6FD0E6;--lila-soft:#2A1F40;--agua-soft:#123643;--ok:#82D7A9;--ok-soft:#163B2E;--warn:#F2CB70;--warn-soft:#403519;--bad:#FDA29B;--bad-soft:#402422}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
+    button,input,select{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    a{color:var(--lila-ink)}
+    button{color:inherit}
+    :focus-visible{outline:3px solid var(--agua);outline-offset:3px}
+    [hidden]{display:none!important}
+    .wrap{width:min(1180px,100%);margin-inline:auto;padding-inline:var(--gutter)}
+    .announcement{background:var(--ink);color:var(--bg);text-align:center;padding:7px 16px;font-size:.78rem;letter-spacing:.02em}
+    .header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--surface) 94%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .navrow{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font:800 1.55rem/1 var(--display);letter-spacing:-.045em}
+    .brand svg{width:34px;height:34px;flex:none}
+    .navlinks{display:flex;align-items:center;gap:clamp(12px,2.3vw,30px)}
+    .navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:.92rem}
+    .navlinks a:hover{color:var(--lila-ink)}
+    main{overflow:clip;min-height:55vh}
+    h1,h2,h3,.price{font-family:var(--display);letter-spacing:-.04em}
+    h1{max-width:800px;margin:14px 0 14px;font-size:clamp(2.5rem,5.8vw,4.8rem);line-height:.99}
+    h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.05}
+    .eyebrow{color:var(--agua-ink);text-transform:uppercase;letter-spacing:.12em;font-size:.76rem;font-weight:700}
+    .hero{padding-block:clamp(42px,7vw,78px) 40px}
+    .hero-copy{max-width:680px;color:var(--muted);font-size:1.08rem}
+    .content-section{padding-block:clamp(38px,6vw,68px)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}
+    .section-head h2{margin:0}
+    .section-head p{margin:7px 0 0;color:var(--muted)}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;min-height:46px;border:0;border-radius:999px;padding:11px 20px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .18s ease,filter .18s ease}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .btn-lila{background:var(--lila);color:var(--on-accent)}
+    .btn-agua{background:var(--agua);color:var(--on-accent)}
+    .btn-outline{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+    .btn-danger{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+    .btn:disabled{opacity:.52;cursor:not-allowed;transform:none}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .chip,.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 11px;background:var(--tile);color:var(--muted);font-size:.8rem;font-weight:600}
+    .chip[aria-pressed="true"]{background:var(--lila-soft);color:var(--lila-ink);border-color:var(--lila)}
+    .rope{height:10px;border-radius:999px;background:repeating-linear-gradient(90deg,var(--lila) 0 16px,var(--surface) 16px 22px,var(--agua) 22px 38px,var(--surface) 38px 44px)}
+    .demo{padding:14px 0;background:var(--agua-soft);border-bottom:1px solid var(--line)}
+    .demo-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.86rem}
+    .demo p{margin:0}.demo small{color:var(--muted)}
+    .demo .btn{min-height:38px;padding:8px 14px;font-size:.82rem}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{min-width:0;border:1px solid var(--line);border-radius:19px;background:var(--surface);padding:18px;box-shadow:0 3px 16px rgba(19,33,44,.025)}
+    .card h3{margin:0 0 7px;font-size:1.22rem;line-height:1.15}
+    .card p{color:var(--muted);margin:5px 0}
+    .card .btn{margin-top:12px}
+    .type-swatch{height:7px;border-radius:99px;margin:-18px -18px 16px}
+    .swatch-0{background:var(--lila)}.swatch-1{background:var(--agua)}.swatch-2{background:var(--ok)}.swatch-3{background:var(--warn)}.swatch-4{background:var(--bad)}
+    .timetable{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+    .daycol{min-width:0;border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:12px}
+    .daycol h3{font-size:.98rem;margin:0 0 9px}
+    .slot{padding:9px 8px;margin:7px 0;border-radius:11px;background:var(--lila-soft);border-left:3px solid var(--lila-ink);font-size:.77rem;line-height:1.3}
+    .slot.type-1{background:var(--agua-soft);border-color:var(--agua-ink)}
+    .slot.type-2{background:var(--ok-soft);border-color:var(--ok)}
+    .slot.type-3{background:var(--warn-soft);border-color:var(--warn)}
+    .slot.type-4{background:var(--bad-soft);border-color:var(--bad)}
+    .slot time{display:block;font-weight:700;margin-bottom:3px}
+    .plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .plan-card{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:17px}
+    .plan-card h3{margin:0;font-size:1rem}
+    .plan-card .price{font-size:1.55rem;font-weight:700;margin:7px 0 0}
+    .muted{color:var(--muted)}
+    .panel{border:1px solid var(--line);border-radius:22px;background:var(--surface);padding:clamp(17px,3vw,28px)}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .field{min-width:0}
+    .field label,.field legend{display:block;font-size:.86rem;font-weight:700;margin-bottom:5px}
+    .field input,.field select{width:100%;min-height:45px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:10px 12px}
+    .field input[type=checkbox],.field input[type=radio]{width:auto;min-height:0;accent-color:var(--agua-ink)}
+    .error{color:var(--bad);font-size:.8rem;min-height:1em;margin:4px 0 0}
+    .tabs{display:flex;gap:5px;overflow:auto;border-bottom:1px solid var(--line);margin-bottom:20px}
+    .tabs button{white-space:nowrap;border:0;border-bottom:3px solid transparent;background:none;padding:10px 14px;color:var(--muted);font-weight:700;cursor:pointer}
+    .tabs button[aria-selected=true]{color:var(--lila-ink);border-color:var(--lila)}
+    .list{display:grid;gap:12px}
+    .booking-card{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;border:1px solid var(--line);border-radius:16px;padding:15px;background:var(--surface)}
+    .booking-card h3{margin:0;font-size:1.1rem}
+    .booking-card p{margin:4px 0;color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:8px}
+    .actions .btn{min-height:39px;padding:8px 14px;font-size:.86rem}
+    .week{margin:18px 0}
+    .week h3{font-size:1.05rem;margin:0 0 9px;color:var(--agua-ink)}
+    .occurrence{display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .occurrence h4{margin:0;font-size:1rem}
+    .radio-row{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:13px;margin:8px 0;cursor:pointer}
+    .radio-row:has(input:checked){background:var(--agua-soft);border-color:var(--agua)}
+    .radio-row input{margin-top:5px;accent-color:var(--agua-ink)}
+    .summary{background:var(--tile);border-radius:15px;padding:14px;margin:14px 0}
+    .status{font-size:.78rem;font-weight:700;border-radius:999px;padding:5px 10px;display:inline-flex}
+    .status-pagado{background:var(--ok-soft);color:var(--ok)}
+    .status-pendiente,.status-en-revisión{background:var(--warn-soft);color:var(--warn)}
+    .status-vencido,.status-cancelado{background:var(--bad-soft);color:var(--bad)}
+    .status-asistió{background:var(--agua-soft);color:var(--agua-ink)}
+    .scroll-table{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:15px}
+    table{width:100%;border-collapse:collapse;min-width:680px;background:var(--surface);font-size:.88rem}
+    th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{color:var(--muted);font-size:.78rem}
+    .due-card{border-radius:19px;background:var(--agua-soft);padding:clamp(17px,3vw,25px);margin-bottom:20px}
+    .due-card h3{margin:0;font-size:1.45rem}
+    .sinpe-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px;margin:13px 0}
+    .copy-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0}
+    .copy-btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;cursor:pointer;font-size:.78rem}
+    .agenda-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}.agenda-controls h2{min-width:0;flex:1;text-align:center;font-size:clamp(1.1rem,4.5vw,2rem);overflow-wrap:anywhere}
+    .icon-btn{min-height:42px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:var(--surface);cursor:pointer}
+    .student-line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+    footer{background:var(--surface);border-top:1px solid var(--line);padding-block:30px max(25px,env(safe-area-inset-bottom))}
+    .footer-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:16px}
+    .footer-links a{color:var(--muted);font-size:.87rem}
+    .fineprint{color:var(--muted);font-size:.8rem;margin:18px 0 0}
+    dialog{color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:0;box-shadow:0 24px 80px rgba(0,0,0,.24)}
+    dialog::backdrop{background:rgba(4,14,20,.58);backdrop-filter:blur(3px)}
+    .app-dialog{width:min(620px,calc(100% - 28px));max-height:90dvh;overflow:auto;border-radius:22px;padding:22px}
+    .dialog-head{display:flex;justify-content:space-between;align-items:start;gap:15px}
+    .dialog-head h2{font-size:1.5rem;margin:0}
+    .dialog-close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--surface);cursor:pointer}
+    .toast{position:fixed;z-index:50;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:999px;padding:11px 18px;box-shadow:var(--shadow);transition:opacity .2s,transform .2s;max-width:calc(100% - 28px)}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .empty{padding:30px 18px;border:1px dashed var(--line);border-radius:18px;text-align:center;color:var(--muted)}
+    @media(max-width:720px){.navlinks{gap:14px}.navlinks a{font-size:.86rem}.navlinks a[href^="https"]{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.timetable{grid-template-columns:1fr}.daycol{padding:14px}.plans{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start;flex-direction:column}}
+    @media(max-width:480px){.navrow{min-height:62px}.brand{font-size:1.35rem}.demo-inner{align-items:flex-start}.grid{gap:9px}.card{padding:14px}.type-swatch{margin:-14px -14px 13px}.form-grid{grid-template-columns:1fr}.booking-card{flex-direction:column}.occurrence{align-items:flex-start;flex-direction:column}.plans{grid-template-columns:1fr 1fr}.plan-card{padding:13px}.section-head{margin-bottom:16px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <div class="announcement">Clases de natación · Pago por SINPE Móvil · Costa Rica</div>
+  <header class="header">
+    <div class="wrap navrow">
+      <a class="brand" href="index.html" aria-label="Brazada, tienda">
+        <svg viewBox="0 0 40 40" role="img" aria-label="Marca Brazada"><circle cx="20" cy="20" r="18" fill="#B175FF"/><path d="M2 21c6-5 11 5 18 0s12 5 18 0v17H2z" fill="#45B7D1"/><path d="M2 20c6-5 11 5 18 0s12 5 18 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Brazada
+      </a>
+      <nav class="navlinks" aria-label="Navegación principal">
+        <a href="index.html">Tienda</a><a href="#clases">Clases</a><a href="#ingresar" id="accountLink">Ingresar</a><a href="https://www.instagram.com/emily_natacion/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </header>
+  <aside class="demo">
+    <div class="wrap demo-inner">
+      <p><strong>Modo demostración:</strong> las cuentas y reservas se guardan solo en este navegador.<br><small>Cuentas de prueba: alumno demo@brazada.cr / demo1234 · profe profe@brazada.cr / profe1234</small></p>
+      <button class="btn btn-outline" data-action="reset-start">Reiniciar demostración</button>
+    </div>
+  </aside>
+  <main id="main" class="wrap"></main>
+  <div class="rope" aria-hidden="true"></div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="index.html" aria-label="Brazada, tienda">
+          <svg viewBox="0 0 40 40" role="img" aria-label="Marca Brazada"><circle cx="20" cy="20" r="18" fill="#B175FF"/><path d="M2 21c6-5 11 5 18 0s12 5 18 0v17H2z" fill="#45B7D1"/><path d="M2 20c6-5 11 5 18 0s12 5 18 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>Brazada
+        </a>
+        <div class="footer-links"><a href="index.html">Tienda</a><a href="#clases">Clases</a><a href="https://www.instagram.com/emily_natacion/" target="_blank" rel="noopener">Instagram</a><a href="https://wa.me/50683307672" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+      <p class="fineprint">Clases de natación con Emily Duncan · Costa Rica. Ubicación: Piscina por confirmar.</p>
+    </div>
+  </footer>
+  <dialog id="dialog" class="app-dialog" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="dialog-close" data-action="dialog-close" aria-label="Cerrar">×</button></div><div id="dialogBody"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    "use strict";
+    const CLASES={
+      "ninos-inicio":{nombre:"Niños principiantes",edades:"4 a 7 años",minutos:45,cupo:6},
+      "ninos-intermedio":{nombre:"Niños nivel intermedio",edades:"8 a 12 años",minutos:45,cupo:8},
+      "adultos-inicio":{nombre:"Adultos principiantes",edades:"Adultos",minutos:60,cupo:6},
+      "adultos-tecnica":{nombre:"Técnica y acondicionamiento",edades:"Adultos",minutos:60,cupo:8},
+      privada:{nombre:"Clase privada",edades:"Todas las edades",minutos:45,cupo:1}
+    };
+    const HORARIO=[
+      {dias:[1,3],hora:"4:00 p. m.",minutos:16*60,tipo:"ninos-inicio"},
+      {dias:[1,3],hora:"5:00 p. m.",minutos:17*60,tipo:"ninos-intermedio"},
+      {dias:[1,3],hora:"6:30 p. m.",minutos:18*60+30,tipo:"adultos-inicio"},
+      {dias:[2,4],hora:"6:00 a. m.",minutos:6*60,tipo:"adultos-tecnica"},
+      {dias:[2,4],hora:"4:00 p. m.",minutos:16*60,tipo:"ninos-inicio"},
+      {dias:[2,4],hora:"5:00 p. m.",minutos:17*60,tipo:"ninos-intermedio"},
+      {dias:[5],hora:"3:00 p. m.",minutos:15*60,tipo:"privada"},
+      {dias:[5],hora:"4:00 p. m.",minutos:16*60,tipo:"privada"},
+      {dias:[5],hora:"5:00 p. m.",minutos:17*60,tipo:"privada"},
+      {dias:[6],hora:"8:00 a. m.",minutos:8*60,tipo:"ninos-inicio"},
+      {dias:[6],hora:"9:00 a. m.",minutos:9*60,tipo:"ninos-intermedio"},
+      {dias:[6],hora:"10:00 a. m.",minutos:10*60,tipo:"adultos-inicio"}
+    ];
+    const PLANES={"1 clase por semana":28000,"2 clases por semana":48000,"Clase suelta":9000,"Clase privada":15000};
+    const UBICACION="Piscina por confirmar",DIA_PAGO=5,VENTANA=28,ANTELACION=12,WHATSAPP="50683307672",PHONE_DISPLAY="8330-7672",LOCATION=UBICACION;
+    const STORAGE_KEY="brazada-demo-v1",SESSION_KEY="brazada-session";
+    const DAY_NAMES=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+    const MONTH_NAMES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    const state={users:[],students:[],occurrences:[],bookings:[],payments:[]};
+    let memorySession=null,selectedType=Object.keys(CLASES)[0],selectedOccurrence=null,selectedStudent=null,authReturn=null,activeTab="clases",agendaDate=dayStart(new Date()),toastTimer=null,profileFormOpen=false,confirmReset=false;
+    const $=s=>document.querySelector(s),main=$("#main"),dialog=$("#dialog"),dialogBody=$("#dialogBody");
+    function dayStart(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+    function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+    function dateKey(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")}
+    function fromKey(k){const [y,m,d]=k.split("-").map(Number);return new Date(y,m-1,d)}
+    function dateLabel(d,year=false){return `${DAY_NAMES[d.getDay()]} ${d.getDate()} de ${MONTH_NAMES[d.getMonth()]}${year?` de ${d.getFullYear()}`:""}`}
+    function monthLabel(y,m){return `${MONTH_NAMES[m].charAt(0).toUpperCase()+MONTH_NAMES[m].slice(1)} ${y}`}
+    function money(n){return "₡"+Math.round(Number(n)||0).toLocaleString("en-US").replace(/,/g,".")}
+    function uid(prefix){return prefix+"-"+Math.random().toString(36).slice(2,10)+Date.now().toString(36)}
+    function safeJSON(s){try{return JSON.parse(s)}catch{return null}}
+    function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch{}}
+    function readSession(){try{return localStorage.getItem(SESSION_KEY)}catch{return memorySession}}
+    function writeSession(v){memorySession=v;try{v?localStorage.setItem(SESSION_KEY,v):localStorage.removeItem(SESSION_KEY)}catch{}}
+    function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+    function dayKey(d){return dateKey(dayStart(d))}
+    function requireProfe(){const u=state.users.find(x=>x.id===readSession());if(u?.role!=="profe")throw new Error("Esta sección es solo para la profe.");}
+    function occStart(o){const d=fromKey(o.date);return new Date(d.getFullYear(),d.getMonth(),d.getDate(),Math.floor(o.minutes/60),o.minutes%60);}
+    function ensureOccurrences(){const today=dayStart(new Date());for(let offset=0;offset<=VENTANA;offset++){const d=addDays(today,offset),key=dayKey(d);HORARIO.filter(slot=>slot.dias.includes(d.getDay())).forEach(slot=>{if(!state.occurrences.some(o=>o.date===key&&o.minutes===slot.minutos&&o.type===slot.tipo))state.occurrences.push(occurrenceAt(d,slot));});}}
+    function occurrenceAt(d,slot){return{ id:uid("oc"),date:dayKey(d),time:slot.hora,minutes:slot.minutos,type:slot.tipo,location:LOCATION}}
+    function hashPassword(password,email){
+      if(!globalThis.crypto?.subtle) return Promise.reject(new Error("Este navegador no permite proteger la contraseña en modo demostración."));
+      return crypto.subtle.digest("SHA-256",new TextEncoder().encode(email.toLowerCase()+":"+password)).then(buf=>Array.from(new Uint8Array(buf),b=>b.toString(16).padStart(2,"0")).join(""));
+    }
+    function seed(){
+      const today=dayStart(new Date()),month=today.getMonth(),year=today.getFullYear();
+      const users=[
+        {id:"u-profe",name:"Emily Duncan",email:"profe@brazada.cr",phone:PHONE_DISPLAY,role:"profe"},
+        {id:"u-demo",name:"Laura Mora",email:"demo@brazada.cr",phone:"8888-1234",role:"alumno",plan:"2 clases por semana"}
+      ];
+      const students=[
+        {id:"s-sofia",accountId:"u-demo",name:"Sofía Mora",age:"7 años",isSelf:false},
+        {id:"s-laura",accountId:"u-demo",name:"Laura Mora",age:"Adulta",isSelf:true}
+      ];
+      const others=[
+        ["Ana Vargas","Ana Vargas","6 años","8811-1101","1 clase por semana"],
+        ["Mateo Rojas","Mateo Rojas","9 años","8811-1102","2 clases por semana"],
+        ["Valentina Solís","Valentina Solís","5 años","8811-1103","1 clase por semana"],
+        ["Diego Castro","Diego Castro","11 años","8811-1104","2 clases por semana"],
+        ["Isabella León","Isabella León","6 años","8811-1105","1 clase por semana"],
+        ["Andrés Ruiz","Andrés Ruiz","Adulto","8811-1106","Clase suelta"]
+      ];
+      others.forEach((r,i)=>{const id="u-fake-"+i;users.push({id,name:r[0],email:`alumno${i+1}@brazada.cr`,phone:r[3],role:"alumno",plan:r[4]});students.push({id:"s-fake-"+i,accountId:id,name:r[1],age:r[2],isSelf:false})});
+      state.users=users;state.students=students;state.occurrences=[];
+      for(let offset=0;offset<=VENTANA;offset++){
+        const d=addDays(today,offset);
+        HORARIO.filter(slot=>slot.dias.includes(d.getDay())).forEach(slot=>state.occurrences.push(occurrenceAt(d,slot)));
+      }
+      state.bookings=[];state.payments=[];
+      const occ=(type,after)=>state.occurrences.filter(o=>o.type===type&&fromKey(o.date)>=after);
+      const sofiaOcc=occ("ninos-inicio",today).slice(0,2),lauraOcc=occ("adultos-inicio",today)[0];
+      sofiaOcc.forEach(o=>state.bookings.push({id:uid("bk"),occurrenceId:o.id,studentId:"s-sofia",status:"reservada"}));
+      if(lauraOcc)state.bookings.push({id:uid("bk"),occurrenceId:lauraOcc.id,studentId:"s-laura",status:"reservada"});
+      const fakeTypes=["ninos-inicio","ninos-intermedio","ninos-inicio","ninos-intermedio","adultos-inicio","ninos-inicio"];
+      const future=state.occurrences.filter(o=>fromKey(o.date)>today);
+      others.forEach((_,i)=>{const o=future.find(x=>x.type===fakeTypes[i]);if(o)state.bookings.push({id:uid("bk"),occurrenceId:o.id,studentId:"s-fake-"+i,status:"reservada"})});
+      for(let daysAgo=14;daysAgo<=35;daysAgo+=21){
+        const d=addDays(today,-daysAgo),slot=HORARIO.find(s=>s.dias.includes(d.getDay())&&s.tipo==="ninos-inicio");
+        if(slot){const o=occurrenceAt(d,slot);state.occurrences.push(o);state.bookings.push({id:uid("bk"),occurrenceId:o.id,studentId:"s-sofia",status:"asistió"})}
+      }
+      const currentIsDue=today.getDate()<=DIA_PAGO;
+      const upcomingMonth=currentIsDue?month:month+1,upcomingYear=year+Math.floor(upcomingMonth/12),normalizedUpcoming=upcomingMonth%12;
+      const previous=new Date(year,upcomingMonth-1,1),older=new Date(year,upcomingMonth-2,1),upcoming=new Date(upcomingYear,normalizedUpcoming,1);
+      state.payments=[
+        {id:uid("pay"),userId:"u-demo",period:monthLabel(older.getFullYear(),older.getMonth()),year:older.getFullYear(),month:older.getMonth(),amount:48000,dueDate:dateKey(new Date(older.getFullYear(),older.getMonth(),DIA_PAGO)),paidDate:dateKey(new Date(older.getFullYear(),older.getMonth(),4)),status:"pagado"},
+        {id:uid("pay"),userId:"u-demo",period:monthLabel(previous.getFullYear(),previous.getMonth()),year:previous.getFullYear(),month:previous.getMonth(),amount:48000,dueDate:dateKey(new Date(previous.getFullYear(),previous.getMonth(),DIA_PAGO)),paidDate:dateKey(new Date(previous.getFullYear(),previous.getMonth(),3)),status:"pagado"},
+        {id:uid("pay"),userId:"u-demo",period:monthLabel(upcoming.getFullYear(),upcoming.getMonth()),year:upcoming.getFullYear(),month:upcoming.getMonth(),amount:48000,dueDate:dateKey(new Date(upcoming.getFullYear(),upcoming.getMonth(),DIA_PAGO)),paidDate:null,status:"pendiente"}
+      ];
+      others.forEach((r,i)=>{
+        const period=monthLabel(year,month),status=i===0?"vencido":i===1?"en revisión":i===2?"pendiente":"pagado";
+        state.payments.push({id:uid("pay"),userId:"u-fake-"+i,period,year,month,amount:PLANES[r[4]]||9000,dueDate:dateKey(new Date(year,month,DIA_PAGO)),paidDate:status==="pagado"?dateKey(addDays(today,-2)):null,status});
+      });
+      persist();
+    }
+    function loadState(){
+      try{
+        const saved=localStorage.getItem(STORAGE_KEY),parsed=saved&&safeJSON(saved);
+        if(parsed&&Array.isArray(parsed.users)&&parsed.users.length){Object.assign(state,parsed);ensureOccurrences();persist();return}
+      }catch{}
+      seed();
+    }
+    const API={
+      async register(data){
+        const email=String(data.email||"").trim().toLowerCase();
+        if(state.users.some(u=>u.email.toLowerCase()===email))throw new Error("Ya existe una cuenta con este correo.");
+        const id=uid("u"),user={id,name:data.name.trim(),email,phone:data.phone,role:"alumno",plan:data.plan};
+        user.passwordHash=await hashPassword(data.password,email);state.users.push(user);
+        state.students.push({id:uid("s"),accountId:id,name:data.studentName.trim(),age:data.studentAge||"Persona adulta",isSelf:!!data.isSelf});
+        if(/por semana/.test(user.plan)&&PLANES[user.plan]){const t=new Date(),due=t.getDate()<=DIA_PAGO?new Date(t.getFullYear(),t.getMonth(),DIA_PAGO):new Date(t.getFullYear(),t.getMonth()+1,DIA_PAGO);state.payments.push({id:uid("pay"),userId:id,period:monthLabel(due.getFullYear(),due.getMonth()),year:due.getFullYear(),month:due.getMonth(),amount:PLANES[user.plan],dueDate:dateKey(due),paidDate:null,status:"pendiente"});}
+        writeSession(id);persist();return{user};
+      },
+      async login(email,password){
+        const normalized=String(email||"").trim().toLowerCase(),user=state.users.find(u=>u.email.toLowerCase()===normalized);
+        if(normalized==="profe@brazada.cr"||normalized==="demo@brazada.cr"){
+          const expected=normalized==="profe@brazada.cr"?"profe1234":"demo1234";
+          if(password!==expected)throw new Error("Correo o contraseña incorrectos.");
+          if(!user.passwordHash)user.passwordHash=await hashPassword(expected,normalized);
+        }else{
+          if(!user?.passwordHash)throw new Error("Correo o contraseña incorrectos.");
+          const candidate=await hashPassword(password,normalized);
+          if(candidate!==user.passwordHash)throw new Error("Correo o contraseña incorrectos.");
+        }
+        writeSession(user.id);persist();return{user};
+      },
+      async logout(){writeSession(null);return{ok:true}},
+      async currentUser(){const id=readSession();return{user:state.users.find(u=>u.id===id)||null}},
+      async classTypes(){return{classes:CLASES}},
+      async occurrences(type=null){const from=dayKey(dayStart(new Date())),to=dayKey(addDays(dayStart(new Date()),VENTANA));return{occurrences:state.occurrences.filter(o=>o.date>=from&&o.date<=to&&occStart(o)>new Date()&&(!type||o.type===type)).sort((a,b)=>a.date.localeCompare(b.date)||a.minutes-b.minutes)}},
+      async book(studentId,occurrenceId){
+        const user=state.users.find(u=>u.id===readSession()),student=state.students.find(s=>s.id===studentId&&s.accountId===user?.id),occ=state.occurrences.find(o=>o.id===occurrenceId);
+        if(!user||user.role!=="alumno"||!student||!occ)throw new Error("No se pudo encontrar la alumna o el horario.");
+        if(fromKey(occ.date)<dayStart(new Date())||fromKey(occ.date)>addDays(dayStart(new Date()),VENTANA))throw new Error("La fecha está fuera del periodo de reservaciones.");
+        if(occStart(occ)<=new Date())throw new Error("Esa clase ya empezó. Elija otro horario.");
+        if(state.bookings.some(b=>b.occurrenceId===occ.id&&b.studentId===student.id&&b.status==="reservada"))throw new Error("Este alumno ya tiene una reserva en ese horario.");
+        const cap=CLASES[occ.type].cupo;if(state.bookings.filter(b=>b.occurrenceId===occ.id&&b.status==="reservada").length>=cap)throw new Error("La clase ya está llena.");
+        const booking={id:uid("bk"),studentId,occurrenceId,status:"reservada"};state.bookings.push(booking);persist();return{booking,occurrence:occ};
+      },
+      async reschedule(bookingId,occurrenceId){
+        const user=state.users.find(u=>u.id===readSession()),booking=state.bookings.find(b=>b.id===bookingId&&b.status==="reservada"),occ=state.occurrences.find(o=>o.id===occurrenceId);
+        if(!user||!booking||!occ||state.students.find(s=>s.id===booking.studentId)?.accountId!==user.id)throw new Error("No se pudo cambiar esta reserva.");
+        const old=state.occurrences.find(o=>o.id===booking.occurrenceId);
+        if(!old||old.type!==occ.type)throw new Error("El nuevo horario debe ser de la misma clase.");
+        if(new Date(fromKey(old.date).getFullYear(),fromKey(old.date).getMonth(),fromKey(old.date).getDate(),Math.floor(old.minutes/60),old.minutes%60)-Date.now()<ANTELACION*3600000)throw new Error("Faltan menos de 12 horas para la clase.");
+        if(occStart(occ)<=new Date()||occStart(occ)>addDays(dayStart(new Date()),VENTANA+1))throw new Error("Elija un horario dentro de las próximas 4 semanas.");
+        if(occStart(occ)-Date.now()<ANTELACION*3600000)throw new Error("El nuevo horario debe ser al menos 12 horas después de ahora.");
+        if(state.bookings.some(b=>b.occurrenceId===occ.id&&b.studentId===booking.studentId&&b.status==="reservada"&&b.id!==booking.id))throw new Error("Este alumno ya tiene una reserva en ese horario.");
+        if(state.bookings.filter(b=>b.occurrenceId===occ.id&&b.status==="reservada"&&b.id!==booking.id).length>=CLASES[occ.type].cupo)throw new Error("La clase ya está llena.");
+        booking.occurrenceId=occ.id;persist();return{booking};
+      },
+      async cancel(bookingId){
+        const user=state.users.find(u=>u.id===readSession()),booking=state.bookings.find(b=>b.id===bookingId&&b.status==="reservada"),occ=state.occurrences.find(o=>o.id===booking?.occurrenceId);
+        if(!user||!booking||state.students.find(s=>s.id===booking.studentId)?.accountId!==user.id||!occ)throw new Error("No se encontró la reserva.");
+        const starts=new Date(fromKey(occ.date).getFullYear(),fromKey(occ.date).getMonth(),fromKey(occ.date).getDate(),Math.floor(occ.minutes/60),occ.minutes%60);
+        if(starts-Date.now()<ANTELACION*3600000)throw new Error("Faltan menos de 12 horas para la clase.");
+        booking.status="cancelada";persist();return{booking};
+      },
+      async myBookings(){const user=state.users.find(u=>u.id===readSession());return{bookings:state.bookings.filter(b=>state.students.find(s=>s.id===b.studentId)?.accountId===user?.id)}},
+      async myPayments(){const user=state.users.find(u=>u.id===readSession());return{payments:state.payments.filter(p=>p.userId===user?.id)}},
+      async reportPayment(paymentId){const user=state.users.find(u=>u.id===readSession()),payment=state.payments.find(p=>p.id===paymentId&&p.userId===user?.id);if(!payment||payment.status==="pagado")throw new Error("No se puede reportar este pago.");payment.status="en revisión";persist();return{payment}},
+      async addStudent(data){const user=state.users.find(u=>u.id===readSession());if(!user||user.role!=="alumno")throw new Error("Inicie sesión para agregar un alumno.");const student={id:uid("s"),accountId:user.id,name:data.name.trim(),age:data.age.trim(),isSelf:false};state.students.push(student);persist();return{student}},
+      async removeStudent(studentId){const user=state.users.find(u=>u.id===readSession()),student=state.students.find(s=>s.id===studentId&&s.accountId===user?.id);if(!student)throw new Error("No se encontró el alumno.");const now=dayStart(new Date());if(state.bookings.some(b=>b.studentId===studentId&&b.status==="reservada"&&fromKey(state.occurrences.find(o=>o.id===b.occurrenceId)?.date||"1970-01-01")>=now))throw new Error("Este alumno tiene clases futuras reservadas.");state.students=state.students.filter(s=>s.id!==studentId);persist();return{ok:true}},
+      async adminAgenda(date){requireProfe();const day=dayKey(date);return{occurrences:state.occurrences.filter(o=>o.date===day).sort((a,b)=>a.minutes-b.minutes)}},
+      async adminStudents(){requireProfe();return{users:state.users.filter(u=>u.role==="alumno").map(user=>({user,students:state.students.filter(s=>s.accountId===user.id),payment:state.payments.filter(p=>p.userId===user.id).sort((a,b)=>b.year-a.year||b.month-a.month)[0]}))}},
+      async adminConfirmPayment(id){requireProfe();const payment=state.payments.find(p=>p.id===id);if(!payment)throw new Error("No se encontró el pago.");payment.status="pagado";payment.paidDate=dayKey(dayStart(new Date()));persist();return{payment}},
+      async adminCancelBooking(id){requireProfe();const booking=state.bookings.find(b=>b.id===id&&b.status==="reservada");if(!booking)throw new Error("No se encontró la reserva.");booking.status="cancelada";persist();return{booking}},
+      async resetDemo(){try{localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(SESSION_KEY)}catch{}writeSession(null);seed();return{ok:true}}
+    };
+    function allBookings(occurrenceId){return state.bookings.filter(b=>b.occurrenceId===occurrenceId&&b.status==="reservada")}
+    function capacity(occ){return Math.max(0,CLASES[occ.type].cupo-allBookings(occ.id).length)}
+    function currentUser(){return state.users.find(u=>u.id===readSession())||null}
+    function accountLinkUpdate(){const u=currentUser();const a=$("#accountLink");a.href=u?(u.role==="profe"?"#panel":"#cuenta"):"#ingresar";a.textContent=u?(u.role==="profe"?"Panel":"Mi cuenta"):"Ingresar"}
+    function titleDate(key,year=false){return dateLabel(fromKey(key),year)}
+    function typeCard(key,i){const c=CLASES[key];return`<article class="card"><div class="type-swatch swatch-${i}"></div><h3>${escapeHTML(c.nombre)}</h3><p>${escapeHTML(c.edades)} · ${c.minutos} min</p><p>Cupo ${c.cupo} ${(c.cupo)===1?"persona":"personas"}</p><a class="btn btn-lila" href="#reservar" data-action="choose-type" data-type="${key}">Reservar</a></article>`}
+    function timetable(){
+      const days=[["Lun",1],["Mar",2],["Mié",3],["Jue",4],["Vie",5],["Sáb",6],["Dom",0]];
+      return`<div class="timetable">${days.map(([name,n])=>`<div class="daycol"><h3>${name}</h3>${HORARIO.filter(s=>s.dias.includes(n)).map(s=>`<div class="slot type-${Object.keys(CLASES).indexOf(s.tipo)}"><time>${escapeHTML(s.hora)}</time>${escapeHTML(CLASES[s.tipo].nombre)}</div>`).join("")||'<span class="muted">Sin clases</span>'}</div>`).join("")}</div>`;
+    }
+    function publicView(){return`<section class="hero"><div><div class="eyebrow">Nade a su ritmo</div><h1>Clases de natación con la profe Emily</h1><p class="hero-copy">Aprenda, gane confianza y disfrute el agua con clases para niñas, niños y personas adultas en Costa Rica.</p><div class="chips"><span class="chip">Emily Duncan</span><span class="chip">Piscina por confirmar</span><span class="chip">Reservas abiertas por 4 semanas</span></div><p style="margin-top:22px"><a class="btn btn-lila" href="#reservar">Ver horarios y reservar</a></p></div></section><div class="rope" aria-hidden="true"></div><section class="content-section"><div class="section-head"><div><span class="eyebrow">Encuentre su grupo</span><h2>Clases para cada etapa</h2></div></div><div class="grid">${Object.keys(CLASES).map(typeCard).join("")}</div></section><section class="content-section"><div class="section-head"><div><span class="eyebrow">Cada semana</span><h2>Horario de clases</h2></div><p>Los horarios se muestran en hora de Costa Rica.</p></div>${timetable()}</section><section class="content-section"><div class="section-head"><div><span class="eyebrow">Planes mensuales</span><h2>Elija su plan</h2></div></div><div class="plans">${Object.entries(PLANES).map(([name,price])=>`<article class="plan-card"><h3>${escapeHTML(name)}</h3><p class="price">${money(price)}${name.includes("semana")?" / mes":" / clase"}</p></article>`).join("")}</div><p class="muted">Fecha de pago: el 5 de cada mes por SINPE Móvil, al ${PHONE_DISPLAY} a nombre de Emily Duncan.</p></section><section class="content-section"><div class="section-head"><div><span class="eyebrow">Información</span><h2>Políticas de clase</h2></div></div><div class="panel"><ul><li>Puede cancelar o cambiar su reserva hasta 12 horas antes de la clase.</li><li>Si necesita reprogramar, elija otro horario disponible del mismo tipo de clase.</li><li>Las clases de reposición se coordinan con la profe según disponibilidad.</li><li>La ubicación se confirma antes de la clase.</li></ul><a class="ig-link" href="https://www.instagram.com/emily_natacion/" target="_blank" rel="noopener">Consulte a Emily por Instagram</a></div></section>`}
+    function bookingView(){
+      const u=currentUser(),types=Object.keys(CLASES);
+      const selected=selectedType in CLASES?selectedType:types[0];
+      const occurrences=state.occurrences.filter(o=>o.type===selected&&occStart(o)>new Date()&&o.date>=dayKey(dayStart(new Date()))&&o.date<=dayKey(addDays(dayStart(new Date()),VENTANA))).sort((a,b)=>a.date.localeCompare(b.date)||a.minutes-b.minutes);
+      const groups={};occurrences.forEach(o=>{const d=fromKey(o.date),monday=addDays(d,-((d.getDay()+6)%7));(groups[dateKey(monday)]??=[]).push(o)});
+      return`<section class="hero"><div><div class="eyebrow">Reservar una clase</div><h1>Su próximo chapuzón</h1><p class="hero-copy">Elija una clase, un horario disponible y la persona que va a nadar.</p></div></section><section class="content-section"><div class="panel"><h2>1. Elija la clase</h2><div class="chips">${types.map(k=>`<button class="filter-chip chip" data-action="type-filter" data-type="${k}" aria-pressed="${selected===k}">${escapeHTML(CLASES[k].nombre)}</button>`).join("")}</div><h2 style="margin-top:32px">2. Escoja un horario</h2>${Object.keys(groups).length?Object.entries(groups).map(([week,items])=>`<div class="week"><h3>Semana del ${titleDate(week)}</h3><div class="list">${items.map(o=>`<article class="card occurrence"><div><h4>${titleDate(o.date)} · ${escapeHTML(o.time)}</h4><p>${escapeHTML(CLASES[o.type].nombre)} · ${CLASES[o.type].minutos} min</p></div><button class="btn ${selectedOccurrence===o.id?"btn-agua":"btn-outline"}" data-action="pick-occurrence" data-id="${o.id}" ${capacity(o)<1?"disabled":""}>${capacity(o)<1?"Lleno":`Quedan ${capacity(o)} cupos`}</button></article>`).join("")}</div></div>`).join(""):'<p class="empty">No hay horarios de esta clase en las próximas cuatro semanas.</p>'}<h2 style="margin-top:30px">3. ¿Quién va a nadar?</h2>${u?.role==="alumno"?`<div>${state.students.filter(s=>s.accountId===u.id).map(s=>`<label class="radio-row"><input type="radio" name="bookingStudent" value="${s.id}" ${selectedStudent===s.id?"checked":""}><span><strong>${escapeHTML(s.name)}</strong><br><span class="muted">${escapeHTML(s.age)}${s.isSelf?" · Soy yo":""}</span></span></label>`).join("")||'<p class="muted">Agregue un alumno desde Mi perfil.</p>'}</div><button class="btn btn-lila" data-action="confirm-book" ${!selectedOccurrence||!state.students.some(s=>s.id===selectedStudent&&s.accountId===u.id)?"disabled":""}>Confirmar reserva</button>`:`<div class="summary"><p>Para reservar, primero debe <a href="#ingresar" data-action="auth-return-booking">ingresar o crear una cuenta</a>. El horario que seleccionó queda marcado mientras ingresa.</p><a class="btn btn-lila" href="#ingresar" data-action="auth-return-booking">Ingresar para reservar</a></div>`}</div></section>`;
+    }
+    function authView(mode="login"){
+      return`<section class="hero"><div><div class="eyebrow">Su cuenta Brazada</div><h1>${mode==="register"?"Cree su cuenta":"Qué bueno verle"}</h1><p class="hero-copy">Administre las clases y pagos de su familia en un mismo lugar.</p></div></section><section class="content-section"><div class="panel" style="max-width:680px;margin:auto"><div class="tabs" role="tablist"><button role="tab" data-action="auth-tab" data-tab="login" aria-selected="${mode==="login"}">Ingresar</button><button role="tab" data-action="auth-tab" data-tab="register" aria-selected="${mode==="register"}">Crear cuenta</button></div><form id="authForm" novalidate>${mode==="login"?`<div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error"><p class="error" id="email-error"></p></div><div class="field" style="margin-top:12px"><label for="password">Contraseña</label><input id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="password-error"><p class="error" id="password-error"></p></div><p class="error" id="form-error" role="alert"></p><button class="btn btn-lila" style="margin-top:10px">Ingresar</button>`:`<div class="form-grid"><div class="field"><label for="reg-name">Nombre completo</label><input id="reg-name" name="name" autocomplete="name" required aria-describedby="name-error"><p class="error" id="name-error"></p></div><div class="field"><label for="reg-email">Correo electrónico</label><input id="reg-email" name="email" type="email" autocomplete="email" required aria-describedby="reg-email-error"><p class="error" id="reg-email-error"></p></div><div class="field"><label for="reg-phone">Teléfono (8 dígitos)</label><input id="reg-phone" name="phone" inputmode="numeric" autocomplete="tel" maxlength="8" required aria-describedby="phone-error"><p class="error" id="phone-error"></p></div><div class="field"><label for="reg-password">Contraseña (mínimo 8 caracteres)</label><input id="reg-password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="reg-password-error"><p class="error" id="reg-password-error"></p></div><div class="field"><label for="student-name">¿Quién va a nadar? Nombre</label><input id="student-name" name="studentName" required aria-describedby="student-name-error"><p class="error" id="student-name-error"></p></div><div class="field"><label for="student-age">Edad</label><input id="student-age" name="studentAge" placeholder="Ej. 7 años o adulta" required aria-describedby="student-age-error"><p class="error" id="student-age-error"></p></div><div class="field"><label for="plan">Plan</label><select id="plan" name="plan">${Object.keys(PLANES).map(p=>`<option>${escapeHTML(p)}</option>`).join("")}</select></div><label class="radio-row"><input type="checkbox" name="isSelf" data-action="self-student"><span>Soy yo</span></label></div><p class="error" id="form-error" role="alert"></p><button class="btn btn-lila" style="margin-top:10px">Crear cuenta</button>`}</form></div></section>`;
+    }
+    function isLate(occ){const d=fromKey(occ.date);const start=new Date(d.getFullYear(),d.getMonth(),d.getDate(),Math.floor(occ.minutes/60),occ.minutes%60);return start-Date.now()<ANTELACION*3600000}
+    function accountView(tab="clases"){
+      const u=currentUser(),myStudents=state.students.filter(s=>s.accountId===u.id),myBookings=state.bookings.filter(b=>myStudents.some(s=>s.id===b.studentId));
+      const upcoming=myBookings.filter(b=>b.status==="reservada"&&state.occurrences.find(o=>o.id===b.occurrenceId)&&occStart(state.occurrences.find(o=>o.id===b.occurrenceId))>new Date()).sort((a,b)=>state.occurrences.find(o=>o.id===a.occurrenceId).date.localeCompare(state.occurrences.find(o=>o.id===b.occurrenceId).date));
+      const past=myBookings.filter(b=>b.status==="asistió"||(b.status==="reservada"&&state.occurrences.some(o=>o.id===b.occurrenceId&&occStart(o)<=new Date())));
+      const payments=state.payments.filter(p=>p.userId===u.id).sort((a,b)=>b.year-a.year||b.month-a.month),due=payments.find(p=>p.status!=="pagado")||null;
+      return`<section class="hero"><div><div class="eyebrow">Mi cuenta</div><h1>Hola, ${escapeHTML(u.name.split(" ")[0])}</h1><p class="hero-copy">Sus clases, pagos y datos de cuenta.</p></div></section><section class="content-section"><div class="panel"><div class="tabs" role="tablist"><button data-action="account-tab" data-tab="clases" aria-selected="${tab==="clases"}">Mis clases</button><button data-action="account-tab" data-tab="pagos" aria-selected="${tab==="pagos"}">Pagos</button><button data-action="account-tab" data-tab="perfil" aria-selected="${tab==="perfil"}">Mi perfil</button></div>${tab==="clases"?`<h2>Próximas</h2><div class="list">${upcoming.map(b=>bookingCard(b)).join("")||'<div class="empty">Todavía no tiene clases próximas. <a href="#reservar">Reserve una clase</a>.</div>'}</div><h2 style="margin-top:28px">Anteriores</h2><div class="list">${past.map(b=>bookingCard(b,true)).join("")||'<p class="muted">Sus clases anteriores aparecerán aquí.</p>'}</div>`:tab==="pagos"?paymentsView(due,payments):profileView(u,myStudents)}</div></section>`;
+    }
+    function bookingCard(b,past=false){
+      const occ=state.occurrences.find(o=>o.id===b.occurrenceId),student=state.students.find(s=>s.id===b.studentId);if(!occ||!student)return"";
+      return`<article class="booking-card"><div><h3>${escapeHTML(CLASES[occ.type].nombre)} · ${escapeHTML(student.name)}</h3><p>${titleDate(occ.date,true)} · ${escapeHTML(occ.time)}</p><p>${escapeHTML(occ.location)}${past?" · Asistió":""}</p></div>${!past?isLate(occ)?`<p>Faltan menos de 12 horas. <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola Emily, necesito conversar sobre la clase de ${student.name} del ${titleDate(occ.date)}.`)}" target="_blank" rel="noopener">Escríbale a la profe por WhatsApp.</a></p>`:`<div class="actions"><button class="btn btn-outline" data-action="reschedule-start" data-id="${b.id}">Cambiar fecha</button><button class="btn btn-outline" data-action="cancel-start" data-id="${b.id}">Cancelar</button></div>`:""}</article>`;
+    }
+    function paymentsView(due,payments){
+      if(!payments.length)return'<p class="empty">No hay pagos registrados.</p>';
+      const history=`<h2>Historial de pagos</h2><div class="scroll-table"><table><thead><tr><th>Periodo</th><th>Monto</th><th>Fecha límite</th><th>Estado</th><th>Fecha de pago</th></tr></thead><tbody>${payments.map(p=>`<tr><td>${escapeHTML(p.period)}</td><td>${money(p.amount)}</td><td>${titleDate(p.dueDate)}</td><td><span class="status status-${escapeHTML(p.status.replace(/\s+/g,"-"))}">${escapeHTML(capitalize(p.status))}</span></td><td>${p.paidDate?titleDate(p.paidDate):"—"}</td></tr>`).join("")}</tbody></table></div>`;
+      if(!due)return'<article class="due-card"><span class="eyebrow">Próximo pago</span><h3>Está al día</h3><p>No tiene pagos pendientes. El próximo cobro aparecerá aquí.</p></article>'+history;
+      const remaining=Math.ceil((fromKey(due.dueDate)-dayStart(new Date()))/86400000),dueText=remaining<0?`Vencido hace ${Math.abs(remaining)} ${Math.abs(remaining)===1?"día":"días"}`:remaining===0?"Vence hoy":remaining===1?"Falta 1 día":`Faltan ${remaining} días`;
+      const message=`Hola Emily, le envío el comprobante de ${due.period} por ${money(due.amount)}.`;
+      return`<article class="due-card"><span class="eyebrow">Próximo pago</span><h3>${escapeHTML(due.period)}</h3><p><strong>${escapeHTML(currentUser().plan||"Plan")} · ${money(due.amount)}</strong></p><p>Vence el ${titleDate(due.dueDate)} · <span class="status ${remaining<0?"status-vencido":"status-pendiente"}">${dueText}</span></p><div class="sinpe-box"><strong>SINPE Móvil</strong><div class="copy-row"><span>Número: ${PHONE_DISPLAY}</span><button class="copy-btn" data-action="copy" data-copy="${PHONE_DISPLAY}">Copiar número</button></div><div class="copy-row"><span>Nombre: Emily Duncan</span><button class="copy-btn" data-action="copy" data-copy="Emily Duncan">Copiar nombre</button></div><div class="copy-row"><span>Monto: ${money(due.amount)}</span><button class="copy-btn" data-action="copy" data-copy="${due.amount}">Copiar monto</button></div></div><div class="actions"><button class="btn btn-lila" data-action="report-payment" data-id="${due.id}" ${due.status==="en revisión"?"disabled":""}>${due.status==="en revisión"?"Pago en revisión":"Ya hice el pago"}</button><a class="btn btn-outline" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener">Enviar comprobante por WhatsApp</a></div></article>`+history;
+    }
+    function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+    function profileView(u,students){return`<h2>Mi perfil</h2><div class="summary"><p><strong>${escapeHTML(u.name)}</strong><br>${escapeHTML(u.email)}<br>${escapeHTML(u.phone)}<br>Plan: ${escapeHTML(u.plan||"")}</p></div><h3>Alumnos de la cuenta</h3>${students.map(s=>`<div class="student-line"><span><strong>${escapeHTML(s.name)}</strong> · ${escapeHTML(s.age)}${s.isSelf?" · Soy yo":""}</span>${!s.isSelf?`<button class="copy-btn" data-action="remove-student" data-id="${s.id}">Quitar</button>`:""}</div>`).join("")}<form id="addStudentForm" class="form-grid" style="margin-top:18px" novalidate><div class="field"><label for="new-student-name">Nombre</label><input id="new-student-name" name="name" required></div><div class="field"><label for="new-student-age">Edad</label><input id="new-student-age" name="age" required placeholder="Ej. 8 años"></div><button class="btn btn-agua">Agregar alumno</button></form><button class="btn btn-outline" style="margin-top:22px" data-action="logout">Cerrar sesión</button>`}
+    function panelView(tab="agenda"){
+      const todayKey=dateKey(agendaDate),agenda=state.occurrences.filter(o=>o.date===todayKey).sort((a,b)=>a.minutes-b.minutes);
+      const students=state.users.filter(u=>u.role==="alumno").map(u=>({u,ss:state.students.filter(s=>s.accountId===u.id),p:state.payments.filter(p=>p.userId===u.id).sort((a,b)=>b.year-a.year||b.month-a.month)[0]}));
+      const month=new Date().getMonth(),year=new Date().getFullYear(),monthPayments=state.payments.filter(p=>p.year===year&&p.month===month),collected=monthPayments.filter(p=>p.status==="pagado").reduce((n,p)=>n+p.amount,0),pending=monthPayments.filter(p=>p.status==="pendiente"||p.status==="en revisión").reduce((n,p)=>n+p.amount,0),overdue=monthPayments.filter(p=>p.status==="vencido").reduce((n,p)=>n+p.amount,0);
+      return`<section class="hero"><div><div class="eyebrow">Panel de Emily</div><h1>Su espacio de trabajo</h1><p class="hero-copy">Agenda, alumnos y pagos de sus clases.</p></div></section><section class="content-section"><div class="panel"><div class="tabs" role="tablist"><button data-action="panel-tab" data-tab="agenda" aria-selected="${tab==="agenda"}">Agenda</button><button data-action="panel-tab" data-tab="alumnos" aria-selected="${tab==="alumnos"}">Alumnos</button><button data-action="panel-tab" data-tab="pagos" aria-selected="${tab==="pagos"}">Pagos</button></div>${tab==="agenda"?`<div class="agenda-controls"><button class="icon-btn" data-action="agenda-shift" data-delta="-1" aria-label="Día anterior">←</button><h2 style="margin:0">${dateLabel(agendaDate,true)}</h2><button class="icon-btn" data-action="agenda-shift" data-delta="1" aria-label="Día siguiente">→</button></div><div class="list">${agenda.map(o=>{const list=allBookings(o.id);return`<article class="card"><h3>${escapeHTML(o.time)} · ${escapeHTML(CLASES[o.type].nombre)}</h3><p>${list.length} de ${CLASES[o.type].cupo} cupos · ${escapeHTML(o.location)}</p>${list.map(b=>{const s=state.students.find(x=>x.id===b.studentId),owner=state.users.find(u=>u.id===s?.accountId);return s?`<div class="student-line"><span><strong>${escapeHTML(s.name)}</strong> · ${escapeHTML(s.age)}<br><span class="muted">${escapeHTML(owner.name)} · <a href="https://wa.me/506${owner.phone.replace(/\D/g,"")}" target="_blank" rel="noopener">${escapeHTML(owner.phone)}</a></span></span><button class="copy-btn" data-action="admin-cancel-start" data-id="${b.id}">Cancelar reserva</button></div>`:""}).join("")||'<p class="muted">Sin reservas.</p>'}</article>`}).join("")||'<p class="empty">No hay clases en esta fecha.</p>'}</div>`:tab==="alumnos"?`<div class="scroll-table"><table><thead><tr><th>Titular</th><th>Alumnos</th><th>Plan</th><th>Próximo pago</th><th>Teléfono</th></tr></thead><tbody>${students.map(x=>`<tr><td>${escapeHTML(x.u.name)}<br><span class="muted">${escapeHTML(x.u.email)}</span></td><td>${x.ss.map(s=>escapeHTML(s.name)).join(", ")||"—"}</td><td>${escapeHTML(x.u.plan||"—")}</td><td><span class="status status-${escapeHTML((x.p?.status||"pendiente").replace(/\s+/g,"-"))}">${escapeHTML(capitalize(x.p?.status||"pendiente"))}</span></td><td><a href="https://wa.me/506${x.u.phone.replace(/\D/g,"")}" target="_blank" rel="noopener">${escapeHTML(x.u.phone)}</a></td></tr>`).join("")}</tbody></table></div>`:`<div class="chips"><span class="chip">Cobrado este mes: ${money(collected)}</span><span class="chip">Pendiente: ${money(pending)}</span><span class="chip">Vencido: ${money(overdue)}</span></div><h2 style="margin-top:24px">Pagos por revisar</h2><div class="list">${state.payments.filter(p=>p.status==="en revisión"||p.status==="vencido").sort((a,b)=>(a.status==="en revisión"?0:1)-(b.status==="en revisión"?0:1)).map(p=>{const owner=state.users.find(u=>u.id===p.userId);return`<article class="booking-card"><div><h3>${escapeHTML(owner?.name||"Cuenta")} · ${escapeHTML(p.period)}</h3><p>${money(p.amount)} · vence ${titleDate(p.dueDate)}</p><span class="status status-${escapeHTML(p.status.replace(/\s+/g,"-"))}">${escapeHTML(capitalize(p.status))}</span></div>${p.status==="en revisión"?`<button class="btn btn-agua" data-action="confirm-payment" data-id="${p.id}">Confirmar pago</button>`:""}</article>`}).join("")||'<p class="empty">No hay pagos vencidos ni en revisión.</p>'}</div>`}</div></section>`;
+    }
+    function render(){
+      accountLinkUpdate();
+      const u=currentUser(),hash=location.hash.replace(/^#/,"")||"clases";
+      let view;
+      if(hash==="reservar"){view=bookingView()}
+      else if(hash==="ingresar"){view=authView(activeTab==="register"?"register":"login")}
+      else if(hash==="cuenta"&&u?.role==="alumno"){view=accountView(activeTab==="pagos"||activeTab==="perfil"?activeTab:"clases")}
+      else if(hash==="panel"&&u?.role==="profe"){view=panelView(activeTab==="alumnos"||activeTab==="pagos"?activeTab:"agenda")}
+      else{location.hash="#clases";view=publicView()}
+      main.innerHTML=view;
+    }
+    function toast(text){const el=$("#toast");el.textContent=text;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),3000)}
+    function showDialog(title,html){$("#dialogTitle").textContent=title;dialogBody.innerHTML=html;dialog.showModal()}
+    function closeDialog(){if(dialog.open)dialog.close()}
+    dialog.addEventListener("click",e=>{const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog()});
+    function waLink(text){return`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`}
+    function doBooking(){
+      if(!selectedOccurrence){toast("Elija un horario disponible");return}
+      const studentId=document.querySelector('input[name="bookingStudent"]:checked')?.value||selectedStudent;
+      if(!studentId){toast("Elija quién va a nadar");return}
+      selectedStudent=studentId;
+      API.book(studentId,selectedOccurrence).then(({occurrence})=>{
+        const student=state.students.find(s=>s.id===studentId),cls=CLASES[occurrence.type],message=`Hola Emily, reservé ${cls.nombre} para ${student.name} el ${titleDate(occurrence.date)} a las ${occurrence.time}`;
+        showDialog("Clase reservada",`<p><strong>${escapeHTML(cls.nombre)}</strong></p><p>${titleDate(occurrence.date,true)} · ${escapeHTML(occurrence.time)}</p><p>${escapeHTML(occurrence.location)}</p><div class="actions"><a class="btn btn-agua" href="${waLink(message)}" target="_blank" rel="noopener">Avisar a la profe por WhatsApp</a><a class="btn btn-lila" href="#cuenta" data-action="dialog-account">Ver mis clases</a></div>`);
+        toast("Clase reservada");render();
+      }).catch(e=>toast(e.message));
+    }
+    function rescheduleDialog(id){
+      const b=state.bookings.find(x=>x.id===id),old=state.occurrences.find(o=>o.id===b?.occurrenceId);if(!b||!old)return;
+      const available=state.occurrences.filter(o=>o.type===old.type&&o.id!==old.id&&occStart(o)-Date.now()>=ANTELACION*3600000&&o.date>=dayKey(dayStart(new Date()))&&o.date<=dayKey(addDays(dayStart(new Date()),VENTANA))&&capacity(o)>0&&!state.bookings.some(x=>x.studentId===b.studentId&&x.occurrenceId===o.id&&x.status==="reservada"));
+      const groups={};available.forEach(o=>{const d=fromKey(o.date),m=addDays(d,-((d.getDay()+6)%7));(groups[dateKey(m)]??=[]).push(o)});
+      showDialog("Cambiar fecha",`<p class="muted">Elija otro horario de ${escapeHTML(CLASES[old.type].nombre)}.</p>${Object.entries(groups).map(([week,items])=>`<div class="week"><h3>Semana del ${titleDate(week)}</h3>${items.map(o=>`<label class="radio-row"><input type="radio" name="move-to" value="${o.id}"><span><strong>${titleDate(o.date)} · ${escapeHTML(o.time)}</strong><br>${capacity(o)} cupos disponibles</span></label>`).join("")}</div>`).join("")||'<p class="empty">No hay otros horarios disponibles.</p>'}<button class="btn btn-lila" data-action="reschedule-confirm" data-id="${id}" ${available.length?"":"disabled"}>Confirmar cambio</button>`);
+    }
+    function confirmInPage(title,message,action,id){
+      showDialog(title,`<p>${escapeHTML(message)}</p><div class="actions"><button class="btn btn-danger" data-action="${action}" data-id="${id}">Sí, confirmar</button><button class="btn btn-outline" data-action="dialog-close">Volver</button></div>`);
+    }
+    async function handleClick(e){
+      const el=e.target.closest("[data-action]");if(!el)return;
+      const action=el.dataset.action,id=el.dataset.id;
+      try{
+        if(action==="reset-start"){confirmReset=!confirmReset;el.textContent=confirmReset?"Confirmar reinicio":"Reiniciar demostración";el.dataset.action=confirmReset?"reset-confirm":"reset-start";if(confirmReset){const p=document.createElement("p");p.className="error";p.id="reset-note";p.textContent="Esto restablecerá las cuentas y reservas de ejemplo en este navegador.";el.parentElement.append(p)}else $("#reset-note")?.remove()}
+        if(action==="reset-confirm"){await API.resetDemo();confirmReset=false;activeTab="clases";location.hash="#clases";render();toast("Demostración reiniciada")}
+        if(action==="choose-type"){selectedType=el.dataset.type;selectedOccurrence=null}
+        if(action==="type-filter"){selectedType=el.dataset.type;selectedOccurrence=null;render()}
+        if(action==="pick-occurrence"){if(!currentUser()){selectedOccurrence=id;authReturn="#reservar";location.hash="#ingresar";activeTab="login"}else selectedOccurrence=id;render()}
+        if(action==="auth-return-booking"){authReturn="#reservar";activeTab="login"}
+        if(action==="confirm-book")doBooking();
+        if(action==="auth-tab"){activeTab=el.dataset.tab;render()}
+        if(action==="account-tab"||action==="panel-tab"){activeTab=el.dataset.tab;render()}
+        if(action==="logout"){await API.logout();activeTab="clases";location.hash="#clases";render();toast("Sesión cerrada")}
+        if(action==="cancel-start"){const b=state.bookings.find(x=>x.id===id),o=state.occurrences.find(x=>x.id===b?.occurrenceId);confirmInPage("Cancelar clase",`¿Desea cancelar ${CLASES[o.type].nombre} del ${titleDate(o.date)} a las ${o.time}?`,"cancel-confirm",id)}
+        if(action==="cancel-confirm"){await API.cancel(id);closeDialog();render();toast("Clase cancelada")}
+        if(action==="reschedule-start")rescheduleDialog(id);
+        if(action==="reschedule-confirm"){const to=document.querySelector('input[name="move-to"]:checked')?.value;if(!to){toast("Elija una fecha");return}await API.reschedule(id,to);closeDialog();render();toast("Fecha cambiada")}
+        if(action==="report-payment"){await API.reportPayment(id);render();toast("Pago reportado")}
+        if(action==="copy"){try{await navigator.clipboard.writeText(el.dataset.copy);toast("Copiado")}catch{toast("No se pudo copiar")}}
+        if(action==="remove-student"){confirmInPage("Quitar alumno","¿Desea quitar este alumno de su cuenta?","remove-confirm",id)}
+        if(action==="remove-confirm"){await API.removeStudent(id);closeDialog();render();toast("Alumno eliminado")}
+        if(action==="agenda-shift"){agendaDate=addDays(agendaDate,Number(el.dataset.delta));render()}
+        if(action==="admin-cancel-start"){confirmInPage("Cancelar reserva","¿Desea cancelar la reserva de este alumno?","admin-cancel-confirm",id)}
+        if(action==="admin-cancel-confirm"){await API.adminCancelBooking(id);closeDialog();render();toast("Reserva cancelada")}
+        if(action==="confirm-payment"){await API.adminConfirmPayment(id);render();toast("Pago confirmado")}
+        if(action==="dialog-close")closeDialog();
+        if(action==="dialog-account"){closeDialog();activeTab="clases"}
+      }catch(err){toast(err.message||"Ocurrió un error")}
+    }
+    document.addEventListener("click",e=>{handleClick(e)});
+    document.addEventListener("change",e=>{
+      if(e.target.name==="bookingStudent"){selectedStudent=e.target.value;render()}
+      if(e.target.name==="isSelf"){const n=$("#student-name"),a=$("#student-age");if(e.target.checked){n.value=$("#reg-name").value;a.value="Persona adulta";n.readOnly=true;a.readOnly=true}else{n.readOnly=false;a.readOnly=false}}
+    });
+    document.addEventListener("submit",async e=>{
+      if(e.target.id==="authForm"){
+        e.preventDefault();const form=e.target,data=Object.fromEntries(new FormData(form));
+        const error=$("#form-error");if(error)error.textContent="";
+        if(form.querySelector("#email")){try{await API.login(data.email,data.password);const u=currentUser();location.hash=authReturn|| (u.role==="profe"?"#panel":"#cuenta");authReturn=null;activeTab="clases";render();toast("Sesión iniciada")}catch(err){if(error)error.textContent=err.message}}
+        else{
+          const errors=[];
+          if(!data.name?.trim())errors.push(["name-error","Escriba su nombre completo."]);
+          if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email||""))errors.push(["reg-email-error","Escriba un correo válido."]);
+          data.phone=(data.phone||"").replace(/[\s-]/g,"");if(data.phone.length===8)data.phone=data.phone.slice(0,4)+"-"+data.phone.slice(4);if(!/^\d{4}-\d{4}$/.test(data.phone))errors.push(["phone-error","El teléfono debe tener 8 dígitos."]);
+          if((data.password||"").length<8)errors.push(["reg-password-error","Use al menos 8 caracteres."]);
+          if(!data.studentName?.trim())errors.push(["student-name-error","Escriba el nombre del alumno."]);
+          if(!data.studentAge?.trim())errors.push(["student-age-error","Escriba la edad del alumno."]);
+          errors.forEach(([id,msg])=>{const x=$("#"+id);if(x)x.textContent=msg});
+          if(errors.length){if(error)error.textContent="Revise los datos señalados.";return}
+          try{await API.register({...data,isSelf:form.elements.isSelf.checked});location.hash=authReturn||"#cuenta";authReturn=null;activeTab="clases";render();toast("Cuenta creada")}catch(err){if(error)error.textContent=err.message}
+        }
+      }
+      if(e.target.id==="addStudentForm"){
+        e.preventDefault();const data=Object.fromEntries(new FormData(e.target));
+        try{await API.addStudent(data);render();toast("Alumno agregado")}catch(err){toast(err.message)}
+      }
+    });
+    window.addEventListener("hashchange",()=>{if(location.hash==="#ingresar"&&!currentUser())activeTab="login";render()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&dialog.open)closeDialog()});
+    loadState();
+    if(readSession()&&!state.users.some(u=>u.id===readSession()))writeSession(null);
+    if(!location.hash)location.hash="#clases";
+    render();
+  </script>
+</body>
+</html>
