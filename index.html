@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Gafas, gorras, tablas y equipo de natación recomendados por su profe en Costa Rica. Haga su pedido por WhatsApp y pague con SINPE Móvil.">
+  <meta property="og:title" content="Brazada · Tienda de natación">
+  <meta property="og:description" content="Equipo para nadar mejor, elegido por su profe. Entrega en clase y envíos a todo Costa Rica.">
+  <meta name="theme-color" content="#F4FAFC">
+  <title>Brazada · Tienda de natación</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23B175FF'/%3E%3Cpath d='M2 22c6-5 10 5 18 0s12 5 18 0v18H2z' fill='%2345B7D1'/%3E%3Cpath d='M2 20c6-5 10 5 18 0s12 5 18 0' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#F4FAFC; --surface:#FFFFFF; --tile:#E6F4F8; --ink:#13212C; --muted:#56687A; --line:#D5E6EC;
+      --lila:#B175FF; --agua:#45B7D1; --lila-ink:#7B3FE0; --agua-ink:#167C93;
+      --lila-soft:#F1E7FF; --agua-soft:#DDF2F7; --on-accent:#13212C;
+      --display:"Bricolage Grotesque", "Arial Rounded MT Bold", Arial, sans-serif;
+      --body:"Figtree", Arial, sans-serif;
+      --gutter:max(16px, env(safe-area-inset-left));
+      --shadow:0 14px 38px rgba(19,33,44,.09);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme:dark;
+        --bg:#0C171E; --surface:#13222B; --tile:#172C36; --ink:#E7F2F6; --muted:#9AB0BC; --line:#22394A;
+        --lila-ink:#C9A2FF; --agua-ink:#6FD0E6; --lila-soft:#2A1F40; --agua-soft:#123643;
+      }
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:90px; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 var(--body); }
+    button,input,textarea { font:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    a { color:var(--lila-ink); }
+    img,svg { max-width:100%; }
+    button { color:inherit; }
+    :focus-visible { outline:3px solid var(--agua); outline-offset:3px; }
+    .wrap { width:min(1180px,100%); margin-inline:auto; padding-inline:var(--gutter); }
+    .announcement { background:var(--ink); color:var(--bg); text-align:center; padding:7px 16px; font-size:.78rem; letter-spacing:.02em; }
+    .header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--surface) 94%,transparent); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    .navrow { min-height:70px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:inline-flex; align-items:center; gap:9px; color:var(--ink); text-decoration:none; font:800 1.55rem/1 var(--display); letter-spacing:-.045em; }
+    .brand svg { width:34px; height:34px; flex:none; }
+    .navlinks { display:flex; align-items:center; gap:clamp(12px,2.3vw,30px); }
+    .navlinks a { color:var(--muted); text-decoration:none; font-weight:600; font-size:.92rem; }
+    .navlinks a:hover { color:var(--lila-ink); }
+    .cart-open { border:1px solid var(--line); border-radius:999px; background:var(--surface); padding:9px 14px; display:flex; align-items:center; gap:8px; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .count { min-width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:var(--lila); color:var(--on-accent); font-size:.75rem; }
+    main { overflow:clip; }
+    .hero { display:grid; grid-template-columns:1.02fr .98fr; align-items:center; gap:clamp(28px,6vw,76px); padding-block:clamp(48px,8vw,94px); }
+    .eyebrow { color:var(--agua-ink); text-transform:uppercase; letter-spacing:.12em; font-size:.76rem; font-weight:700; }
+    h1,h2,h3,.price { font-family:var(--display); letter-spacing:-.04em; }
+    h1 { max-width:650px; margin:14px 0 18px; font-size:clamp(2.5rem,5.8vw,4.8rem); line-height:.99; }
+    .hero-copy { max-width:570px; color:var(--muted); font-size:1.08rem; }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:9px; min-height:46px; border:0; border-radius:999px; padding:11px 20px; font-weight:700; text-decoration:none; cursor:pointer; transition:transform .18s ease,filter .18s ease; }
+    .btn:hover { transform:translateY(-2px); filter:brightness(1.04); }
+    .btn-lila { background:var(--lila); color:var(--on-accent); }
+    .btn-agua { background:var(--agua); color:var(--on-accent); }
+    .btn-outline { background:var(--surface); border:1px solid var(--line); color:var(--ink); }
+    .btn:disabled { opacity:.52; cursor:not-allowed; transform:none; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+    .chip { background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:7px 12px; color:var(--muted); font-size:.8rem; font-weight:600; }
+    .pool-panel { position:relative; isolation:isolate; overflow:hidden; min-height:370px; border-radius:30px; background:var(--agua); display:grid; place-items:center; padding:25px; }
+    .pool-panel:before,.pool-panel:after { content:""; position:absolute; inset:12% -15%; z-index:-1; height:26px; border-block:2px solid rgba(255,255,255,.68); transform:rotate(-16deg); }
+    .pool-panel:after { inset:72% -12%; transform:rotate(-16deg); }
+    .lane-number { position:absolute; right:18px; top:2px; color:rgba(19,33,44,.16); font:800 8rem/.9 var(--display); }
+    .feature-card { width:min(310px,90%); background:var(--surface); border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow); border-radius:24px; padding:15px; transform:rotate(2deg); }
+    .feature-art { border-radius:16px; background:var(--tile); background-image:repeating-linear-gradient(0deg,transparent 0 25px,rgba(69,183,209,.08) 26px 27px); }
+    .feature-card .product-drawing { height:190px; }
+    .feature-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 3px 0; }
+    .feature-foot h3 { margin:0; font-size:1.15rem; }
+    .feature-foot .price { display:block; font-size:1.2rem; }
+    .feature-foot .btn { padding:9px 15px; min-height:40px; font-size:.87rem; }
+    .rope { height:10px; border-radius:999px; background:repeating-linear-gradient(90deg,var(--lila) 0 16px,var(--surface) 16px 22px,var(--agua) 22px 38px,var(--surface) 38px 44px); }
+    section.content-section { padding-block:clamp(54px,8vw,88px); }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:24px; }
+    .section-head h2 { margin:0; font-size:clamp(2rem,4vw,3.2rem); line-height:1; }
+    .section-head p { margin:7px 0 0; color:var(--muted); }
+    .filters { display:grid; gap:14px; margin-bottom:22px; }
+    .filter-row { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+    .filter-chip { border:1px solid var(--line); background:var(--surface); color:var(--muted); border-radius:999px; padding:8px 13px; font-size:.87rem; font-weight:600; cursor:pointer; }
+    .filter-chip[aria-pressed="true"] { background:var(--lila-soft); color:var(--lila-ink); border-color:var(--lila); }
+    .filter-chip.toggle[aria-pressed="true"] { background:var(--agua-soft); border-color:var(--agua); color:var(--agua-ink); }
+    .segmented { display:inline-flex; border:1px solid var(--line); border-radius:999px; background:var(--surface); padding:3px; gap:2px; }
+    .segmented button { background:transparent; border:0; border-radius:999px; padding:7px 12px; color:var(--muted); cursor:pointer; font-size:.86rem; }
+    .segmented button[aria-pressed="true"] { background:var(--agua-soft); color:var(--agua-ink); font-weight:700; }
+    .search { min-height:43px; width:min(310px,100%); padding:9px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink); }
+    .results { color:var(--muted); font-size:.9rem; margin:0 0 14px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .product-card { position:relative; overflow:hidden; min-width:0; border:1px solid var(--line); border-radius:19px; background:var(--surface); transition:transform .2s ease,box-shadow .2s ease; }
+    .product-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+    .art-tile { position:relative; height:clamp(140px,23vw,225px); overflow:hidden; background:var(--tile); background-image:repeating-linear-gradient(0deg,transparent 0 25px,rgba(69,183,209,.075) 26px 27px); }
+    .product-drawing { width:100%; height:100%; display:block; }
+    .tag { position:absolute; z-index:2; top:10px; left:10px; max-width:calc(100% - 20px); border-radius:999px; padding:5px 9px; font-size:.67rem; line-height:1.2; font-weight:700; }
+    .tag.recomendado { background:var(--lila-soft); color:var(--lila-ink); }
+    .tag.nuevo { background:var(--agua-soft); color:var(--agua-ink); }
+    .tag.ultimas { background:#FFF0D6; color:#775018; }
+    @media (prefers-color-scheme: dark) { .tag.ultimas { background:#42351D; color:#F2D38D; } }
+    .card-body { padding:12px 13px 14px; }
+    .card-kicker { margin:0 0 3px; color:var(--muted); font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; }
+    .product-card h3 { font-size:1.04rem; line-height:1.15; margin:3px 0 5px; overflow-wrap:anywhere; }
+    .product-short { color:var(--muted); font-size:.8rem; line-height:1.35; min-height:2.15em; margin:0 0 9px; }
+    .card-price { font:700 1.15rem/1.2 var(--display); }
+    .swatches { display:flex; gap:5px; margin-top:9px; align-items:center; }
+    .swatch-dot { width:14px; height:14px; border:1px solid rgba(19,33,44,.2); border-radius:50%; flex:none; }
+    .card-hit { position:absolute; inset:0; z-index:1; border:0; background:transparent; width:100%; height:100%; cursor:pointer; }
+    .empty { padding:36px 20px; border:1px dashed var(--line); background:var(--surface); border-radius:20px; text-align:center; }
+    .empty h3 { margin:0 0 5px; font-size:1.4rem; }
+    .empty p { color:var(--muted); margin:0 0 16px; }
+    .steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; counter-reset:step; }
+    .step { position:relative; padding:21px; background:var(--surface); border:1px solid var(--line); border-radius:18px; counter-increment:step; }
+    .step:before { content:"0" counter(step); display:block; color:var(--lila-ink); font:700 1.35rem var(--display); }
+    .step h3 { margin:9px 0 5px; font-size:1.1rem; line-height:1.15; }
+    .step p { color:var(--muted); font-size:.9rem; margin:0; }
+    .teacher-card { display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(25px,5vw,60px); align-items:center; padding:clamp(20px,4vw,42px); background:var(--surface); border:1px solid var(--line); border-radius:28px; }
+    .teacher-photo { min-height:270px; border-radius:21px; background:var(--agua-soft); display:grid; place-items:center; padding:20px; text-align:center; color:var(--agua-ink); }
+    .teacher-photo svg { width:min(190px,80%); }
+    .teacher-photo span { display:block; font-size:.8rem; margin-top:5px; }
+    .teacher-copy h2 { font-size:clamp(2rem,4vw,3rem); margin:0 0 12px; }
+    .teacher-copy p { color:var(--muted); margin:0; }
+    .facts { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .fact { border-radius:999px; padding:8px 11px; background:var(--agua-soft); color:var(--agua-ink); font-weight:600; font-size:.79rem; }
+    .faq-list { display:grid; gap:10px; max-width:850px; }
+    details.faq { border:1px solid var(--line); border-radius:16px; background:var(--surface); padding:0 17px; }
+    .faq summary { cursor:pointer; padding:16px 26px 16px 0; font-weight:700; position:relative; list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary:after { content:"+"; position:absolute; right:0; font-size:1.3rem; color:var(--agua-ink); top:10px; }
+    .faq[open] summary:after { content:"−"; }
+    .faq p { color:var(--muted); margin:0 0 17px; }
+    footer { background:var(--surface); border-top:1px solid var(--line); padding-block:30px max(25px,env(safe-area-inset-bottom)); }
+    .footer-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:16px; }
+    .footer-links a { color:var(--muted); font-size:.87rem; }
+    .fineprint { color:var(--muted); font-size:.8rem; margin:18px 0 0; }
+
+    dialog { color:var(--ink); background:var(--surface); border:1px solid var(--line); padding:0; box-shadow:0 24px 80px rgba(0,0,0,.24); }
+    dialog::backdrop { background:rgba(4,14,20,.58); backdrop-filter:blur(3px); }
+    .product-dialog { width:min(900px,calc(100% - 28px)); max-height:min(92dvh,900px); border-radius:24px; overflow:auto; }
+    .dialog-close { position:absolute; z-index:3; top:12px; right:12px; width:42px; height:42px; border:1px solid var(--line); border-radius:50%; background:var(--surface); cursor:pointer; font-size:1.3rem; }
+    .modal-layout { display:grid; grid-template-columns:1fr 1fr; min-height:500px; }
+    .modal-art { background:var(--tile); background-image:repeating-linear-gradient(0deg,transparent 0 28px,rgba(69,183,209,.09) 29px 30px); min-height:420px; display:grid; place-items:center; padding:35px; }
+    .modal-art .product-drawing { height:min(380px,55vw); }
+    .modal-info { padding:clamp(22px,4vw,42px); overflow:auto; }
+    .modal-kicker { color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.07em; }
+    .modal-info h2 { margin:8px 0 5px; font-size:clamp(1.65rem,3vw,2.5rem); line-height:1.03; }
+    .modal-price { font:700 1.6rem var(--display); }
+    .modal-desc { color:var(--muted); margin:12px 0; }
+    .profe-quote { background:var(--lila-soft); color:var(--lila-ink); border-radius:14px; padding:13px 15px; margin:14px 0; font-size:.9rem; }
+    .profe-quote strong { display:block; margin-bottom:3px; }
+    .option-label { display:block; margin:15px 0 7px; font-weight:700; font-size:.88rem; }
+    .color-options,.size-options { display:flex; flex-wrap:wrap; gap:8px; }
+    .color-option,.size-option { border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:7px 10px; cursor:pointer; font-size:.83rem; }
+    .color-option[aria-checked="true"],.size-option[aria-pressed="true"] { border-color:var(--lila); background:var(--lila-soft); color:var(--lila-ink); box-shadow:0 0 0 1px var(--lila); }
+    .color-option { display:flex; align-items:center; gap:6px; }
+    .color-option .swatch-dot { width:17px;height:17px; }
+    .size-note { color:var(--muted); font-size:.79rem; margin:8px 0 0; }
+    .qty-row { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:17px 0; }
+    .stepper { display:inline-flex; align-items:center; gap:4px; border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:3px; }
+    .stepper button { width:34px;height:34px;border:0;border-radius:50%;background:var(--tile);cursor:pointer;font-size:1.1rem; }
+    .stepper output { min-width:28px;text-align:center;font-weight:700; }
+    .detail-list { padding-left:19px; margin:17px 0 0; color:var(--muted); font-size:.88rem; }
+    .modal-add { width:100%; }
+    .cart-dialog { position:fixed; inset:0 0 0 auto; margin:0; width:min(440px,100%); height:100dvh; max-height:100dvh; border-radius:20px 0 0 20px; overflow:hidden; transform:translateX(100%); transition:transform .24s ease; }
+    .cart-dialog[open] { transform:translateX(0); }
+    .cart-shell { height:100%; display:flex; flex-direction:column; min-height:0; }
+    .cart-head { padding:18px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .cart-head h2 { margin:0; font-size:1.55rem; }
+    .cart-content { padding:18px 20px; overflow:auto; flex:1; }
+    .cart-foot { padding:16px 20px max(18px,env(safe-area-inset-bottom)); border-top:1px solid var(--line); background:var(--surface); }
+    .cart-line { display:grid; grid-template-columns:70px 1fr auto; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .mini-art { width:70px;height:64px;border-radius:12px;background:var(--tile); }
+    .mini-art .product-drawing { height:100%; }
+    .line-name { margin:0;font:700 .98rem/1.15 var(--display); }
+    .line-sub { color:var(--muted);font-size:.78rem;margin:4px 0; }
+    .line-price { font-weight:700;font-size:.88rem; }
+    .line-actions { display:flex;align-items:center;gap:8px;margin-top:6px; }
+    .line-actions .stepper button { width:26px;height:26px;font-size:.9rem; }
+    .line-actions .stepper output { min-width:20px;font-size:.85rem; }
+    .remove { border:0;background:transparent;color:var(--lila-ink);text-decoration:underline;cursor:pointer;font-size:.78rem;padding:5px; }
+    .subtotal-row,.total-row { display:flex;justify-content:space-between;gap:12px;margin:8px 0; }
+    .total-row { font-weight:700;font-size:1.08rem;border-top:1px solid var(--line);padding-top:11px;margin-top:12px; }
+    .cart-foot .btn { width:100%; }
+    .empty-cart { text-align:center;padding:48px 12px; }
+    .empty-cart h3 { font-size:1.45rem;margin:0 0 8px; }
+    .empty-cart p { color:var(--muted);margin:0 0 18px; }
+    .order-form { display:grid; gap:13px; }
+    .field label,.field legend { display:block;font-size:.86rem;font-weight:700;margin-bottom:5px; }
+    .field input,.field textarea { width:100%;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:11px 12px; }
+    .field textarea { resize:vertical;min-height:78px; }
+    .error { color:#B42318;font-size:.78rem;min-height:1em;margin:4px 0 0; }
+    @media (prefers-color-scheme: dark) { .error { color:#FDA29B; } }
+    [hidden] { display:none !important; }
+    fieldset.field { border:0;padding:0;margin:0; }
+    .delivery-choice { display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:13px;padding:11px;margin:8px 0;cursor:pointer; }
+    .delivery-choice:has(input:checked) { border-color:var(--agua);background:var(--agua-soft); }
+    .delivery-choice input { margin-top:4px;accent-color:var(--agua-ink); }
+    .delivery-choice strong { display:block;font-size:.86rem; }
+    .delivery-choice small { display:block;color:var(--muted);font-size:.75rem;line-height:1.35;margin-top:2px; }
+    .delivery-choice .delivery-cost { margin-left:auto;white-space:nowrap;font-weight:700;font-size:.82rem; }
+    .form-summary { border:1px solid var(--line);border-radius:14px;padding:12px;margin:4px 0; }
+    .form-summary .subtotal-row { font-size:.88rem; }
+    .form-summary .total-row { font-size:1rem; }
+    .back-button { display:block;margin:12px auto 0;border:0;background:transparent;color:var(--lila-ink);text-decoration:underline;cursor:pointer; }
+    .success-step { border:1px solid var(--line);border-radius:16px;padding:15px;margin:12px 0; }
+    .success-step h3 { margin:0 0 8px;font-size:1.12rem; }
+    .success-step p { color:var(--muted);font-size:.86rem;margin:7px 0; }
+    .sinpe-box { background:var(--agua-soft);border-radius:13px;padding:13px;margin-top:10px; }
+    .copy-row { display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0;font-size:.87rem; }
+    .copy-btn { border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;font-size:.76rem;cursor:pointer; }
+    .message-details { margin-top:12px; }
+    .message-details summary { cursor:pointer;color:var(--lila-ink);font-weight:700;padding:8px 0; }
+    .message-text { white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted);font-size:.8rem;background:var(--tile);border-radius:12px;padding:11px; }
+    .toast { position:fixed;z-index:50;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;display:flex;align-items:center;gap:13px;background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 13px 10px 17px;box-shadow:var(--shadow);transition:opacity .2s,transform .2s;max-width:calc(100% - 28px); }
+    .toast.show { opacity:1;transform:translate(-50%,0);pointer-events:auto; }
+    .toast button { border:0;border-radius:999px;background:var(--agua);color:var(--on-accent);font-weight:700;padding:7px 11px;cursor:pointer;white-space:nowrap; }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+    @media (max-width:720px) { .navlinks { display:none; } .hero { grid-template-columns:1fr; padding-top:42px; } .pool-panel { min-height:330px; } .steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .teacher-card { grid-template-columns:1fr; } .teacher-photo { min-height:220px; } }
+    @media (min-width:700px) { .grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; } .filters { grid-template-columns:1fr auto; align-items:center; } .filter-row.categories { grid-column:1/-1; } }
+    @media (min-width:1000px) { .grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+    @media (max-width:480px) {
+      .announcement { font-size:.69rem; }
+      .brand { font-size:1.35rem; }
+      .navrow { min-height:62px; }
+      .cart-open { padding:8px 10px; }
+      .hero-copy { font-size:1rem; }
+      .pool-panel { min-height:300px; }
+      .grid { gap:9px; }
+      .art-tile { height:145px; }
+      .card-body { padding:10px; }
+      .product-card h3 { font-size:.95rem; }
+      .product-short { font-size:.75rem; }
+      .tag { top:7px;left:7px;font-size:.6rem; }
+      .steps { gap:9px; }
+      .step { padding:15px; }
+      .step h3 { font-size:1rem; }
+      .section-head { align-items:start;flex-direction:column; }
+      .modal-layout { grid-template-columns:1fr; }
+      .modal-art { min-height:220px;padding:15px; }
+      .modal-art .product-drawing { height:210px; }
+      .product-dialog { max-height:94dvh; }
+      .modal-info { padding:20px; }
+      .cart-dialog { border-radius:0; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important;transition:none!important;animation:none!important; } }
+  </style>
+</head>
+<body>
+  <div class="announcement">Entrega gratis en clase · Pago por SINPE Móvil · Envíos a todo el país</div>
+  <header class="header">
+    <div class="wrap navrow">
+      <a class="brand" href="#inicio" aria-label="Brazada, inicio">
+        <svg viewBox="0 0 40 40" role="img" aria-label="Marca Brazada"><circle cx="20" cy="20" r="18" fill="#B175FF"/><path d="M2 21c6-5 11 5 18 0s12 5 18 0v17H2z" fill="#45B7D1"/><path d="M2 20c6-5 11 5 18 0s12 5 18 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Brazada
+      </a>
+      <nav class="navlinks" aria-label="Navegación principal">
+        <a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a>
+      </nav>
+      <button class="cart-open" type="button" data-action="open-cart">
+        Carrito <span class="count" id="cart-count" aria-live="polite">0</span>
+      </button>
+    </div>
+  </header>
+  <main id="inicio">
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Tienda de natación · Costa Rica</div>
+        <h1>Equipo para nadar mejor, elegido por su profe.</h1>
+        <p class="hero-copy">Gafas, gorras, tablas y trajes de baño que uso en mis clases. Haga su pedido aquí, lo confirmamos por WhatsApp y pague con SINPE Móvil.</p>
+        <a class="btn btn-lila" href="#tienda">Ver productos <span aria-hidden="true">→</span></a>
+        <div class="chips"><span class="chip">Entrega gratis en clase</span><span class="chip">Pago con SINPE Móvil</span><span class="chip">Ayuda con tallas</span></div>
+      </div>
+      <div class="pool-panel" aria-label="Producto destacado">
+        <span class="lane-number" aria-hidden="true">3</span>
+        <article class="feature-card">
+          <div class="feature-art" id="feature-art"></div>
+          <div class="feature-foot">
+            <div><h3>Kit Primera Clase</h3><span class="price" id="feature-price">₡12.900</span></div>
+            <button class="btn btn-agua" type="button" data-action="open-product" data-id="kit">Ver kit</button>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="wrap"><div class="rope" aria-hidden="true"></div></div>
+    <section class="content-section" id="tienda">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Tienda</h2><p>Equipo que puede usar en sus clases y entrenamientos.</p></div></div>
+        <div class="filters">
+          <div class="filter-row categories" id="category-filters" aria-label="Categorías"></div>
+          <div class="filter-row">
+            <div class="segmented" id="audience-filter" aria-label="Filtrar por público"></div>
+            <button class="filter-chip toggle" id="recommended-filter" type="button" aria-pressed="false">Recomendados por la profe</button>
+          </div>
+          <input class="search" id="search" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+        </div>
+        <p class="results" id="result-count" aria-live="polite"></p>
+        <div class="grid" id="product-grid"></div>
+        <div class="empty" id="empty-state" hidden><h3>No encontramos productos</h3><p>Pruebe con otra búsqueda o quite los filtros.</p><button class="btn btn-outline" type="button" data-action="clear-filters">Quitar filtros</button></div>
+      </div>
+    </section>
+    <div class="wrap"><div class="rope" aria-hidden="true"></div></div>
+    <section class="content-section" id="como-comprar">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Cómo comprar</h2><p>Su pedido se confirma directamente con la profe.</p></div></div>
+        <div class="steps">
+          <article class="step"><h3>Elija sus productos</h3><p>Seleccione talla y color para armar su carrito.</p></article>
+          <article class="step"><h3>Envíe su pedido por WhatsApp</h3><p>La profe confirma que haya su talla y color.</p></article>
+          <article class="step"><h3>Pague con SINPE Móvil</h3><p>Envíe el comprobante en el mismo chat.</p></article>
+          <article class="step"><h3>Reciba su pedido</h3><p>En clase, por Correos de Costa Rica o por mensajería en la GAM.</p></article>
+        </div>
+      </div>
+    </section>
+    <div class="wrap"><div class="rope" aria-hidden="true"></div></div>
+    <section class="content-section" id="la-profe">
+      <div class="wrap">
+        <article class="teacher-card">
+          <div class="teacher-photo">
+            <div>
+              <svg viewBox="0 0 220 160" role="img" aria-label="Dibujo lineal de una persona nadando" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="153" cy="53" r="17"/><path d="M136 64 99 85l-30-6M102 85l-9 38M110 81l34 15 28-9M74 79 47 66"/><path d="M22 117c19-12 33 12 53 0s34 12 54 0 34 12 54 0" stroke-width="4"/><path d="M30 137c19-12 33 12 53 0s34 12 54 0 34 12 54 0" stroke-width="4"/>
+              </svg>
+              <span>Foto de la profe</span>
+            </div>
+          </div>
+          <div class="teacher-copy">
+            <div class="eyebrow">Quién está detrás de Brazada</div>
+            <h2>La profe</h2>
+            <p>Soy profesora de natación para niños y adultos. Todo lo que vendo aquí lo uso o lo recomiendo en clase, así que si tiene dudas con una talla o con qué gafas elegir, pregúnteme por WhatsApp.</p>
+            <div class="facts"><span class="fact">Clases para niños y adultos</span><span class="fact">Asesoría de tallas sin costo</span><span class="fact">Entrega en la piscina</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <div class="wrap"><div class="rope" aria-hidden="true"></div></div>
+    <section class="content-section" id="preguntas">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Preguntas frecuentes</h2><p>Lo esencial para hacer su pedido con tranquilidad.</p></div></div>
+        <div class="faq-list">
+          <details class="faq"><summary>¿Cuándo pago?</summary><p>Después de que la profe confirme su pedido por WhatsApp, paga por SINPE Móvil y envía el comprobante en el mismo chat.</p></details>
+          <details class="faq"><summary>¿Cuánto dura el envío?</summary><p>La entrega en clase se hace en su próxima clase. La mensajería en la GAM tarda de 1 a 2 días hábiles y Correos de Costa Rica de 2 a 4 días hábiles.</p></details>
+          <details class="faq"><summary>¿Puedo cambiar la talla?</summary><p>Sí, dentro de 8 días, siempre que el producto esté sin usar y con su empaque. En trajes de baño solo se acepta cambio de talla por higiene.</p></details>
+          <details class="faq"><summary>¿Qué gafas le sirven a mi hijo?</summary><p>Las gafas Junior son para niños de 6 a 12 años. Si lo desea, puede probarlas en clase.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div><a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#B175FF"/><path d="M2 21c6-5 11 5 18 0s12 5 18 0v17H2z" fill="#45B7D1"/><path d="M2 20c6-5 11 5 18 0s12 5 18 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>Brazada</a><div class="fineprint">Tienda de natación en Costa Rica</div></div>
+        <nav class="footer-links" aria-label="Enlaces del pie"><a href="#tienda">Tienda</a><a href="#como-comprar">Cómo comprar</a><a href="#la-profe">La profe</a><a href="#preguntas">Preguntas</a></nav>
+      </div>
+      <p class="fineprint">Prototipo para revisión: productos, precios y números son de ejemplo.</p>
+    </div>
+  </footer>
+
+  <dialog class="product-dialog" id="product-dialog" aria-labelledby="modal-name">
+    <button class="dialog-close" type="button" data-action="close-product" aria-label="Cerrar detalles">×</button>
+    <div class="modal-layout">
+      <div class="modal-art" id="modal-art"></div>
+      <div class="modal-info" id="modal-info"></div>
+    </div>
+  </dialog>
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-shell">
+      <div class="cart-head"><h2 id="cart-title">Su carrito</h2><button class="dialog-close" style="position:static" type="button" data-action="close-cart" aria-label="Cerrar carrito">×</button></div>
+      <div class="cart-content" id="cart-content"></div>
+      <div class="cart-foot" id="cart-foot"></div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>Agregado al carrito</span><button type="button" data-action="open-cart">Ver carrito</button></div>
+
+  <script>
+    "use strict";
+
+    // Configuración del negocio: edite estos datos antes de publicar la tienda.
+    const CONFIG = {
+      whatsapp: "",   // Número de la profe con código de país, ej. "5068XXXXXXX". Vacío: WhatsApp deja elegir el contacto.
+      sinpe: { numero: "8XXX-XXXX", nombre: "Nombre de la profe" }, // EJEMPLO
+      entregas: [
+        { id: "clase", nombre: "Entrega en clase", detalle: "En la piscina, en su próxima clase.", costo: 0 },
+        { id: "gam", nombre: "Mensajería GAM", detalle: "San José, Heredia, Alajuela y Cartago. 1 a 2 días hábiles.", costo: 3000, direccion: true },
+        { id: "correos", nombre: "Correos de Costa Rica", detalle: "A todo el país. 2 a 4 días hábiles.", costo: 2800, direccion: true }
+      ]
+    };
+
+    const COLORS = {
+      "Lila":"#B175FF","Celeste":"#45B7D1","Rosa":"#FF7EB6","Negro":"#22272E","Blanco":"#F4F6F8",
+      "Amarillo":"#FFD23F","Plateado":"#C3CCD6","Azul":"#2F6FDB","Transparente":"#CFEFF7","Coral":"#FF7A59","Turquesa":"#2EC4B6"
+    };
+    const CAT_NAMES = { gafas:"Gafas",gorras:"Gorras",entrenamiento:"Entrenamiento",trajes:"Trajes de baño",accesorios:"Accesorios" };
+    const PRODUCTS = [
+      {id:"gafas-junior",cat:"gafas",nombre:"Gafas Junior Antiempañante",precio:6500,para:"Niños",corto:"Ajuste cómodo para sus primeras brazadas.",desc:"Gafas para niños de 6 a 12 años, con ajuste suave y lentes antiempañantes para ver con claridad durante la clase.",profe:"Son las que uso con mis alumnos de 6 a 12 años: ajustan sin apretar y no se empañan.",colores:["Lila","Celeste","Rosa"],tallas:null,tallaNombre:"Edad",dibujo:"gafas",tag:"recomendado",detalles:["Recomendadas para edades de 6 a 12 años.","Puente y correa ajustables para un sello cómodo.","Lentes antiempañantes para piscina." ]},
+      {id:"gafas-entreno",cat:"gafas",nombre:"Gafas de Entrenamiento",precio:9900,para:"Adultos",corto:"Lente claro para piscina techada.",desc:"Gafas cómodas para entrenamiento frecuente en piscina techada. Su lente claro ayuda a mantener una visión natural bajo techo.",colores:["Negro","Celeste","Transparente"],tallas:null,tallaNombre:"Talla",dibujo:"gafas",tag:null,detalles:["Lente claro para piscinas techadas.","Correa ajustable para un calce firme.","Diseñadas para sesiones frecuentes." ]},
+      {id:"gafas-espejo",cat:"gafas",nombre:"Gafas Espejadas Pro",precio:14900,para:"Adultos",corto:"Protección UV para nadar al aire libre.",desc:"Gafas con lente espejado para entrenar al aire libre. La protección UV ayuda a cuidar sus ojos cuando nada bajo el sol.",colores:["Plateado","Azul","Lila"],tallas:null,tallaNombre:"Talla",dibujo:"gafas",tag:"nuevo",detalles:["Lente espejado para reducir el brillo.","Protección UV para piscina al aire libre.","Correa ajustable de buen soporte." ]},
+      {id:"gorra-silicona",cat:"gorras",nombre:"Gorra de Silicona",precio:5500,para:"Todos",corto:"Ayuda a proteger el pelo del cloro.",desc:"Gorra flexible de silicona para cubrir el cabello y ayudar a reducir el contacto con el cloro. Disponible en tallas para niño y adulto.",profe:"Dura más que la de tela y protege mejor el pelo del cloro.",colores:["Lila","Celeste","Negro","Blanco"],tallas:["Niño","Adulto"],tallaNombre:"Talla",dibujo:"gorra",tag:"recomendado",detalles:["Material flexible de silicona.","Disponible en talla de niño y adulto.","Se enjuaga con facilidad después de la clase." ]},
+      {id:"gorra-lycra",cat:"gorras",nombre:"Gorra de Lycra",precio:3900,para:"Niños",corto:"Cómoda para los más pequeños; no jala el pelo.",desc:"Gorra suave de lycra, cómoda para los más pequeños y fácil de poner. No jala el pelo al retirarla.",colores:["Celeste","Rosa","Amarillo"],tallas:["Niño","Adulto"],tallaNombre:"Talla",dibujo:"gorra",tag:null,detalles:["Tela suave que no jala el pelo.","Fácil de poner y quitar.","Disponible en talla de niño y adulto." ]},
+      {id:"tabla",cat:"entrenamiento",nombre:"Tabla de Nado",precio:8500,para:"Todos",corto:"Practique la patada con buen apoyo.",desc:"Tabla de nado liviana que brinda apoyo para practicar la patada y mejorar la posición de las piernas. La Junior es para menores de 10 años.",profe:"La base para aprender a patear bien. La Junior es para menores de 10 años.",colores:["Celeste","Lila","Amarillo"],tallas:["Junior","Adulto"],tallaNombre:"Tamaño",dibujo:"tabla",tag:"recomendado",detalles:["Ayuda a trabajar la patada por separado.","Tamaño Junior recomendado para menores de 10 años.","Espuma liviana fácil de sujetar." ]},
+      {id:"pull-buoy",cat:"entrenamiento",nombre:"Pull Buoy",precio:7500,para:"Adultos",corto:"Aísle las piernas y practique la brazada.",desc:"Flotador para colocar entre las piernas y concentrarse en la técnica de brazos y la posición del cuerpo.",colores:["Lila","Celeste"],tallas:null,tallaNombre:"Talla",dibujo:"pullbuoy",tag:null,detalles:["Diseñado para entrenar la brazada.","Se coloca entre los muslos.","Liviano y fácil de llevar." ]},
+      {id:"manoplas",cat:"entrenamiento",nombre:"Manoplas de Entrenamiento",precio:8900,para:"Adultos",corto:"Sienta mejor el agarre del agua.",desc:"Manoplas para trabajar el agarre y la fuerza de la brazada. Elija una talla cómoda para su mano.",colores:["Celeste","Lila","Negro"],tallas:["S","M","L"],tallaNombre:"Talla",dibujo:"manoplas",tag:null,detalles:["Para practicar el agarre del agua.","Correa ajustable para sujetarlas a la mano.","Tallas S, M y L." ]},
+      {id:"aletas",cat:"entrenamiento",nombre:"Aletas Cortas de Silicona",precio:18500,para:"Todos",corto:"Impulso y control para sus entrenamientos.",desc:"Aletas cortas de silicona para trabajar la patada con control en piscina. Seleccione su talla de pie.",colores:["Celeste","Lila","Amarillo"],tallas:["32-33","34-35","36-37","38-39","40-41","42-43"],tallaNombre:"Talla de pie",dibujo:"aletas",tag:"ultimas",detalles:["Diseño corto para entrenamientos en piscina.","Silicona flexible y cómoda.","Elija la talla según su número de calzado." ]},
+      {id:"traje-dama",cat:"trajes",nombre:"Traje Enterizo Dama",precio:24900,para:"Adultos",corto:"Tela resistente al cloro para entrenar.",desc:"Traje enterizo de natación con tela resistente al cloro y calce pensado para acompañar sus entrenamientos.",colores:["Negro/Lila","Azul/Celeste","Coral/Negro"],tallas:["XS","S","M","L","XL"],tallaNombre:"Talla",dibujo:"traje",tag:"recomendado",detalles:["Tela resistente al cloro.","Diseño enterizo para nadar con comodidad.","Cambio de talla sujeto a condiciones de higiene." ]},
+      {id:"jammer",cat:"trajes",nombre:"Jammer Caballero",precio:19900,para:"Adultos",corto:"Calce firme para sus sesiones de piscina.",desc:"Jammer de natación de largo a la rodilla, pensado para un calce firme y cómodo durante el entrenamiento.",colores:["Negro/Celeste","Azul/Lila"],tallas:["28","30","32","34","36"],tallaNombre:"Talla",dibujo:"jammer",tag:null,detalles:["Largo a la rodilla para entrenar.","Cintura elástica con cordón ajustable.","Tallas numéricas del 28 al 36." ]},
+      {id:"traje-nina",cat:"trajes",nombre:"Traje de Baño Niña",precio:15900,para:"Niños",corto:"Enterizo con protección UV 50+.",desc:"Traje de baño enterizo para niña con protección UV 50+, listo para clases y juegos en el agua.",colores:["Lila/Celeste","Rosa/Lila","Turquesa/Amarillo"],tallas:["4","6","8","10","12","14"],tallaNombre:"Talla",dibujo:"trajenina",tag:null,detalles:["Protección UV 50+.","Diseño enterizo cómodo para nadar.","Tallas infantiles del 4 al 14." ]},
+      {id:"boxer-nino",cat:"trajes",nombre:"Bóxer de Natación Niño",precio:12900,para:"Niños",corto:"Bóxer cómodo para la clase de natación.",desc:"Bóxer de natación para niño con cintura ajustable y calce cómodo para moverse con libertad en la piscina.",colores:["Celeste/Negro","Azul/Amarillo","Lila/Negro"],tallas:["4","6","8","10","12","14"],tallaNombre:"Talla",dibujo:"boxer",tag:null,detalles:["Cintura elástica con ajuste.","Diseño cómodo para clases de natación.","Tallas infantiles del 4 al 14." ]},
+      {id:"tapones",cat:"accesorios",nombre:"Tapones de Silicona",precio:2500,para:"Todos",corto:"Incluye estuche para guardarlos.",desc:"Tapones de silicona reutilizables para ayudar a evitar que entre agua en los oídos. Incluye estuche.",colores:["Celeste","Lila","Amarillo"],tallas:null,tallaNombre:"Talla",dibujo:"tapones",tag:null,detalles:["Silicona suave y reutilizable.","Incluye estuche de guardado.","Enjuague y deje secar después de usar." ]},
+      {id:"toalla",cat:"accesorios",nombre:"Toalla de Microfibra",precio:9500,para:"Todos",corto:"Secado rápido, 70 x 140 cm.",desc:"Toalla de microfibra liviana y compacta, de secado rápido. Medida: 70 x 140 cm.",colores:["Lila","Celeste","Turquesa"],tallas:null,tallaNombre:"Talla",dibujo:"toalla",tag:null,detalles:["Medida de 70 x 140 cm.","Secado rápido después de nadar.","Liviana para llevar a clase." ]},
+      {id:"bolso",cat:"accesorios",nombre:"Bolso de Malla",precio:7900,para:"Todos",corto:"Lleve su equipo mojado con ventilación.",desc:"Bolso de malla para transportar el equipo de natación mojado y dejar que circule el aire.",colores:["Negro","Lila","Celeste"],tallas:null,tallaNombre:"Talla",dibujo:"bolso",tag:null,detalles:["Malla ventilada para guardar equipo mojado.","Cordón ajustable para cerrar.","Cómodo para llevar a sus clases." ]},
+      {id:"kit",cat:"accesorios",nombre:"Kit Primera Clase",precio:12900,para:"Todos",corto:"Gafas Junior, gorra de silicona y tapones.",desc:"Todo lo esencial para empezar: gafas Junior, gorra de silicona y tapones. Por separado cuesta ₡14.500, así que con el kit ahorra ₡1.600.",profe:"Es lo que pido para la primera clase. Con esto ya puede empezar.",colores:["Lila","Celeste","Rosa"],tallas:["Niño","Adulto"],tallaNombre:"Talla de gorra",dibujo:"kit",tag:"recomendado",detalles:["Incluye gafas Junior, gorra de silicona y tapones.","El kit cuesta ₡12.900; por separado suma ₡14.500.","Una opción práctica para su primera clase." ]}
+    ];
+
+    const state = { category:"todo", audience:"Todos", recommended:false, search:"", activeProduct:null, selectedColor:0, selectedSize:"", quantity:1, view:"carrito", delivery:"clase", order:null };
+    let cart = loadCart();
+    const $ = (sel,root=document) => root.querySelector(sel);
+    const $$ = (sel,root=document) => Array.from(root.querySelectorAll(sel));
+    function escapeHTML(value) { return String(value).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+    function money(value) { const n=Math.round(Number(value)||0); return "₡"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
+    function shade(hex,factor) { const v=hex.replace("#",""); const rgb=[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)); return "#"+rgb.map(x=>Math.max(0,Math.min(255,Math.round(x*factor))).toString(16).padStart(2,"0")).join(""); }
+    function splitColor(name) { const bits=name.split("/"); return {main:COLORS[bits[0]]||COLORS.Lila,accent:bits[1]?(COLORS[bits[1]]||COLORS.Lila):shade(COLORS[bits[0]]||COLORS.Lila,.72)}; }
+    function svgWrap(inner,main,accent,label) { return `<svg class="product-drawing" viewBox="0 0 200 160" role="img" aria-label="${escapeHTML(label)}" xmlns="http://www.w3.org/2000/svg"><g stroke="#13212C" stroke-opacity=".14" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">${inner(main,accent)}</g></svg>`; }
+    function draw(kind,main,accent,label="Equipo de natación") {
+      const drawings = {
+        gafas:(m,a)=>`<path d="M19 72 Q24 48 48 46 L78 46 Q91 48 94 62 L106 62 Q109 48 122 46 L152 46 Q176 48 181 72 L176 98 Q172 112 154 114 L125 111 Q109 108 104 86 L96 86 Q91 108 75 111 L46 114 Q28 112 24 98Z" fill="${a}" opacity=".8"/><rect x="29" y="57" width="63" height="48" rx="19" fill="${m}"/><rect x="108" y="57" width="63" height="48" rx="19" fill="${m}"/><path d="M39 66q12-8 27-3" fill="none" stroke="white" stroke-width="6" stroke-opacity=".68"/><path d="M118 66q12-8 27-3" fill="none" stroke="white" stroke-width="6" stroke-opacity=".68"/><path d="M92 75q8-7 16 0" fill="none" stroke="${a}" stroke-width="7"/>`,
+        gorra:(m,a)=>`<path d="M34 112Q35 54 82 33q18-8 36 0 47 21 48 79l-8 12H42Z" fill="${m}"/><path d="M45 97q55-20 111 0" fill="none" stroke="${a}" stroke-width="9"/><path d="M72 52q24-18 51 0" fill="none" stroke="white" stroke-width="5" stroke-opacity=".55"/><path d="M87 80q8-7 16 0t16 0" fill="none" stroke="${a}" stroke-width="4"/>`,
+        tabla:(m,a)=>`<path d="M38 28Q38 20 48 20h104q10 0 10 8l14 105q1 9-10 9H34q-11 0-10-9Z" fill="${m}"/><path d="M79 38h42q7 0 7 7v10q0 7-7 7H79q-7 0-7-7V45q0-7 7-7Z" fill="#F4FAFC" stroke="${a}" stroke-width="5"/><path d="M42 117q58 9 116 0" fill="none" stroke="${a}" stroke-width="6"/>`,
+        pullbuoy:(m,a)=>`<path d="M63 27Q39 18 30 41L15 72q-8 17 9 27l27 17q12 8 24-1l13-14 13 14q12 9 24 1l27-17q17-10 9-27l-15-31q-9-23-33-14l-25 10Z" fill="${m}"/><path d="M61 34 88 49l-9 47-31 22M139 34l-27 15 9 47 31 22" fill="none" stroke="${a}" stroke-width="8"/><path d="M87 49q13-8 26 0l-8 49q-5 7-10 0Z" fill="#F4FAFC"/>`,
+        manoplas:(m,a)=>`<g transform="rotate(-12 67 83)"><path d="M26 45q0-13 13-13h47q13 0 13 13v70q0 15-15 15H41q-15 0-15-15Z" fill="${m}"/><circle cx="48" cy="56" r="4" fill="#F4FAFC"/><circle cx="67" cy="56" r="4" fill="#F4FAFC"/><circle cx="86" cy="56" r="4" fill="#F4FAFC"/><path d="M32 107q29 16 61 0" fill="none" stroke="${a}" stroke-width="5"/></g><g transform="rotate(12 137 83)"><path d="M101 45q0-13 13-13h47q13 0 13 13v70q0 15-15 15h-43q-15 0-15-15Z" fill="${m}"/><circle cx="123" cy="56" r="4" fill="#F4FAFC"/><circle cx="142" cy="56" r="4" fill="#F4FAFC"/><circle cx="161" cy="56" r="4" fill="#F4FAFC"/><path d="M107 107q29 16 61 0" fill="none" stroke="${a}" stroke-width="5"/></g>`,
+        aletas:(m,a)=>`<g transform="rotate(-9 65 82)"><path d="M43 31q0-8 9-8h35q9 0 9 8v43H43Z" fill="${a}"/><path d="M42 70h56q10 0 13 10l16 52q2 8-7 8H24q-9 0-7-8l16-52q3-10 9-10Z" fill="${m}"/><path d="M48 39h43v31H48Z" fill="${m}"/></g><g transform="rotate(9 137 82)"><path d="M105 31q0-8 9-8h35q9 0 9 8v43h-53Z" fill="${a}"/><path d="M102 70h56q10 0 13 10l16 52q2 8-7 8h-96q-9 0-7-8l16-52q3-10 9-10Z" fill="${m}"/><path d="M110 39h43v31h-43Z" fill="${m}"/></g>`,
+        traje:(m,a)=>`<path d="M72 19q-18 7-18 29l-9 89q-1 11 10 11h80q11 0 10-11l-9-89q0-22-18-29l-13 15q-10 10-20 0Z" fill="${m}"/><path d="M73 24q5 27 27 29 22-2 27-29" fill="none" stroke="${a}" stroke-width="9"/><path d="M59 82q40 15 82 0" fill="none" stroke="${a}" stroke-width="7"/><path d="M82 27 69 53M118 27l13 26" fill="none" stroke="white" stroke-opacity=".55" stroke-width="4"/>`,
+        jammer:(m,a)=>`<path d="M48 25h104l-8 104q-1 9-11 9h-27l-7-54-7 54H65q-10 0-11-9Z" fill="${m}"/><path d="M48 25h104v20H48Z" fill="${a}"/><path d="M69 47l9 83M132 47l-8 83" fill="none" stroke="${a}" stroke-width="8"/><path d="M78 36h44" stroke="white" stroke-width="4" stroke-opacity=".7"/>`,
+        boxer:(m,a)=>`<path d="M48 31h104l-8 93q-1 10-11 10h-30l-3-48-5 48H65q-10 0-11-10Z" fill="${m}"/><path d="M48 31h104v19H48Z" fill="${a}"/><path d="M101 51v34M68 52l5 62M132 52l-5 62" fill="none" stroke="${a}" stroke-width="7"/>`,
+        trajenina:(m,a)=>`<path d="M73 20q-17 8-18 28l-9 87q-1 12 11 12h86q12 0 11-12l-9-87q-1-20-18-28l-14 15q-11 10-23 0Z" fill="${m}"/><path d="M74 27q8 28 26 29 18-1 26-29" fill="none" stroke="${a}" stroke-width="8"/><circle cx="70" cy="82" r="5" fill="${a}" stroke="none"/><circle cx="130" cy="99" r="5" fill="${a}" stroke="none"/><circle cx="86" cy="115" r="4" fill="${a}" stroke="none"/><circle cx="116" cy="72" r="4" fill="${a}" stroke="none"/>`,
+        tapones:(m,a)=>`<g transform="rotate(-18 67 78)"><path d="M47 43q0-13 13-13h15q13 0 13 13v40q0 13-13 13H60q-13 0-13-13Z" fill="${m}"/><path d="M54 51h27v10H54Zm0 17h27v10H54Z" fill="${a}" stroke="none"/></g><g transform="rotate(18 132 78)"><path d="M112 43q0-13 13-13h15q13 0 13 13v40q0 13-13 13h-15q-13 0-13-13Z" fill="${m}"/><path d="M119 51h27v10h-27Zm0 17h27v10h-27Z" fill="${a}" stroke="none"/></g><path d="M86 104q14 18 28 0" fill="none" stroke="${a}" stroke-width="5"/>`,
+        toalla:(m,a)=>`<path d="M39 42q0-14 14-14h93q15 0 15 15v77q0 13-14 13H54q-15 0-15-14Z" fill="${m}"/><path d="M72 29v103M88 29v103" stroke="${a}" stroke-width="6"/><ellipse cx="53" cy="81" rx="23" ry="39" fill="${a}"/><ellipse cx="53" cy="81" rx="15" ry="30" fill="${m}"/><path d="M53 52q-13 5-13 29t13 29q12-6 12-29T53 52Z" fill="none" stroke="${a}" stroke-width="4"/>`,
+        bolso:(m,a)=>`<path d="M52 53q0-27 24-27h48q24 0 24 27l14 79q2 9-9 9H47q-11 0-9-9Z" fill="${m}"/><path d="M68 52q1-26 32-26t32 26" fill="none" stroke="${a}" stroke-width="7"/><path d="M50 72h102M45 91h112M42 110h118M61 57l-9 75M82 54l-6 83M104 54v83M126 54l6 83M147 59l9 73" fill="none" stroke="${a}" stroke-opacity=".85" stroke-width="3"/>`,
+        kit:(m,a)=>`<g transform="translate(0 5)"><path d="M25 78Q28 49 57 35q13-6 26 0 28 14 30 43l-7 8H33Z" fill="${m}"/><path d="M37 69q30-12 62 0" fill="none" stroke="${a}" stroke-width="6"/></g><g transform="translate(65 22) scale(.62)"><rect x="29" y="57" width="63" height="48" rx="19" fill="${a}"/><rect x="108" y="57" width="63" height="48" rx="19" fill="${m}"/><path d="M92 75q8-7 16 0" fill="none" stroke="${a}" stroke-width="8"/><path d="M41 66q12-8 25-3M120 66q12-8 25-3" fill="none" stroke="white" stroke-width="6"/></g><g transform="translate(126 89) scale(.38)"><path d="M47 43q0-13 13-13h15q13 0 13 13v40q0 13-13 13H60q-13 0-13-13Z" fill="${a}"/><path d="M112 43q0-13 13-13h15q13 0 13 13v40q0 13-13 13h-15q-13 0-13-13Z" fill="${m}"/></g>`
+      };
+      const fn=drawings[kind]||drawings.gafas;
+      return svgWrap(fn,main,accent,label);
+    }
+
+    function loadCart() {
+      try { const raw=localStorage.getItem("brazada-cart"); const parsed=raw?JSON.parse(raw):[]; return Array.isArray(parsed)?parsed.filter(x=>x&&typeof x.id==="string"&&Number.isInteger(x.qty)&&x.qty>0&&PRODUCTS.some(p=>p.id===x.id)):[]; }
+      catch (_) { return []; }
+    }
+    function saveCart() { try { localStorage.setItem("brazada-cart",JSON.stringify(cart)); } catch (_) {} }
+    function findProduct(id) { return PRODUCTS.find(p=>p.id===id); }
+    function totalItems() { return cart.reduce((n,x)=>n+x.qty,0); }
+    function subtotal() { return cart.reduce((n,x)=>{const p=findProduct(x.id);return n+(p?p.precio*x.qty:0);},0); }
+    function colorSwatch(name,extra="") { const c=splitColor(name); const fill=name.includes("/")?`linear-gradient(90deg,${c.main} 0 50%,${c.accent} 50% 100%)`:c.main; return `<span class="swatch-dot ${extra}" style="background:${fill}" aria-hidden="true"></span>`; }
+    function tagHTML(tag) { const labels={recomendado:"Recomendado por la profe",nuevo:"Nuevo",ultimas:"Últimas unidades"}; return tag?`<span class="tag ${tag}">${labels[tag]}</span>`:""; }
+    function productCard(p) {
+      const c=splitColor(p.colores[0]);
+      return `<article class="product-card">${tagHTML(p.tag)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
+    }
+    function renderProducts() {
+      const list=PRODUCTS.filter(p=>(state.category==="todo"||p.cat===state.category)&&(state.audience==="Todos"||p.para==="Todos"||p.para===state.audience)&&(!state.recommended||p.tag==="recomendado")&&(`${p.nombre} ${p.corto} ${p.cat} ${p.colores.join(" ")}`.toLowerCase().includes(state.search.toLowerCase())));
+      $("#product-grid").innerHTML=list.map(productCard).join("");
+      $("#result-count").textContent=`${list.length} ${list.length===1?"producto encontrado":"productos encontrados"}`;
+      $("#empty-state").hidden=list.length>0; $("#product-grid").hidden=list.length===0;
+    }
+    function setupFilters() {
+      const cats=[["todo","Todo"],...Object.entries(CAT_NAMES)];
+      $("#category-filters").innerHTML=cats.map(([id,label])=>`<button type="button" class="filter-chip" data-filter-category="${id}" aria-pressed="${state.category===id}">${label}</button>`).join("");
+      $("#audience-filter").innerHTML=["Todos","Niños","Adultos"].map(x=>`<button type="button" data-audience="${x}" aria-pressed="${state.audience===x}">${x}</button>`).join("");
+      $("#recommended-filter").setAttribute("aria-pressed",String(state.recommended));
+      renderProducts();
+    }
+    function focusFirst(dialog) { requestAnimationFrame(()=>{const el=dialog.querySelector("button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])");if(el)el.focus();}); }
+    function openProduct(id) {
+      const p=findProduct(id); if(!p)return;
+      state.activeProduct=p;state.selectedColor=0;state.selectedSize="";state.quantity=1;
+      $("#modal-art").innerHTML=draw(p.dibujo,...Object.values(splitColor(p.colores[0])),p.nombre);
+      renderProductModal(); $("#product-dialog").showModal(); focusFirst($("#product-dialog"));
+    }
+    function renderProductModal() {
+      const p=state.activeProduct;if(!p)return;
+      const {main,accent}=splitColor(p.colores[state.selectedColor]);
+      $("#modal-art").innerHTML=draw(p.dibujo,main,accent,p.nombre);
+      const sizeBlock=p.tallas?`<span class="option-label" id="size-label">${escapeHTML(p.tallaNombre)}</span><div class="size-options" role="group" aria-labelledby="size-label">${p.tallas.map(s=>`<button type="button" class="size-option" data-size="${escapeHTML(s)}" aria-pressed="${state.selectedSize===s}">${escapeHTML(s)}</button>`).join("")}</div>${["trajes","entrenamiento"].includes(p.cat)&&["aletas","traje","trajenina","jammer","boxer"].includes(p.dibujo)?`<p class="size-note">Guía de tallas: si tiene dudas, consúltele a la profe antes de confirmar.</p>`:""}`:`<span class="option-label">Talla</span><p class="size-note">${p.id==="gafas-junior"?"Talla única, recomendada para niños de 6 a 12 años.":"Talla única."}</p>`;
+      $("#modal-info").innerHTML=`<div class="modal-kicker">${CAT_NAMES[p.cat]} · ${p.para}</div><h2 id="modal-name">${escapeHTML(p.nombre)}</h2><div class="modal-price">${money(p.precio)}</div><p class="modal-desc">${escapeHTML(p.desc)}</p>${p.profe?`<div class="profe-quote"><strong>La profe dice</strong>${escapeHTML(p.profe)}</div>`:""}<span class="option-label" id="color-label">Color: ${escapeHTML(p.colores[state.selectedColor])}</span><div class="color-options" role="radiogroup" aria-labelledby="color-label">${p.colores.map((c,i)=>`<button type="button" class="color-option" role="radio" aria-checked="${i===state.selectedColor}" data-color="${i}">${colorSwatch(c)}${escapeHTML(c)}</button>`).join("")}</div>${sizeBlock}<div class="qty-row"><strong>Cantidad</strong><div class="stepper"><button type="button" data-action="modal-qty" data-delta="-1" aria-label="Reducir cantidad">−</button><output>${state.quantity}</output><button type="button" data-action="modal-qty" data-delta="1" aria-label="Aumentar cantidad">+</button></div></div><button class="btn btn-lila modal-add" type="button" data-action="add-cart" ${p.tallas&&!state.selectedSize?"disabled":""}>${p.tallas&&!state.selectedSize?"Elija una talla":`Agregar al carrito · ${money(p.precio*state.quantity)}`}</button><ul class="detail-list">${p.detalles.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>`;
+    }
+    function renderCount() { $("#cart-count").textContent=String(totalItems()); }
+    function renderCart() {
+      const content=$("#cart-content"),foot=$("#cart-foot");
+      if(state.view==="datos") { renderForm(); return; }
+      if(state.view==="listo") { renderSuccess(); return; }
+      if(!cart.length) {
+        content.innerHTML=`<div class="empty-cart"><h3>Su carrito está vacío</h3><p>Puede elegir sus productos y volver aquí cuando guste.</p><button class="btn btn-lila" type="button" data-action="close-cart" onclick="document.getElementById('tienda').scrollIntoView({behavior:'smooth'})">Ver productos</button></div>`;
+        foot.innerHTML="";return;
+      }
+      content.innerHTML=cart.map((line,i)=>{const p=findProduct(line.id);if(!p)return "";const c=splitColor(line.color||p.colores[0]);return `<div class="cart-line"><div class="mini-art">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div><p class="line-name">${escapeHTML(p.nombre)}</p><p class="line-sub">${escapeHTML(line.color||p.colores[0])}${line.size?` · ${escapeHTML(line.size)}`:""}</p><span class="line-price">${money(p.precio)} c/u</span><div class="line-actions"><div class="stepper"><button type="button" data-action="line-qty" data-index="${i}" data-delta="-1" aria-label="Reducir cantidad">−</button><output>${line.qty}</output><button type="button" data-action="line-qty" data-index="${i}" data-delta="1" aria-label="Aumentar cantidad">+</button></div><button type="button" class="remove" data-action="remove-line" data-index="${i}">Quitar</button></div></div><strong>${money(p.precio*line.qty)}</strong></div>`;}).join("");
+      foot.innerHTML=`<div class="subtotal-row"><span>Subtotal</span><strong>${money(subtotal())}</strong></div><button class="btn btn-lila" type="button" data-action="checkout">Continuar con el pedido</button>`;
+    }
+    function renderForm() {
+      const selected=CONFIG.entregas.find(d=>d.id===state.delivery)||CONFIG.entregas[0];
+      const prevForm=$("#order-form"),prev=prevForm?Object.fromEntries(new FormData(prevForm)):(state.formData||null);
+      $("#cart-content").innerHTML=`<form class="order-form" id="order-form" novalidate><div class="field"><label for="customer-name">Nombre completo</label><input id="customer-name" name="name" autocomplete="name" required aria-describedby="name-error"><p class="error" id="name-error"></p></div><div class="field"><label for="customer-phone">Teléfono</label><input id="customer-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="8888-8888" required aria-describedby="phone-error"><p class="error" id="phone-error"></p></div><fieldset class="field"><legend>Forma de entrega</legend>${CONFIG.entregas.map(d=>`<label class="delivery-choice"><input type="radio" name="delivery" value="${d.id}" ${state.delivery===d.id?"checked":""}><span><strong>${escapeHTML(d.nombre)}</strong><small>${escapeHTML(d.detalle)}</small></span><span class="delivery-cost">${d.costo?money(d.costo):"Gratis"}</span></label>`).join("")}</fieldset><div class="field" id="address-wrap" ${selected.direccion?"":"hidden"}><label for="customer-address">Dirección exacta</label><textarea id="customer-address" name="address" aria-describedby="address-error" ${selected.direccion?"required":""} placeholder="Provincia, cantón, señas y punto de referencia"></textarea><p class="error" id="address-error"></p></div><div class="field"><label for="customer-notes">Notas (opcional)</label><textarea id="customer-notes" name="notes" placeholder="Indíquenos cualquier detalle útil"></textarea></div><div class="form-summary"><div class="subtotal-row"><span>Subtotal</span><strong>${money(subtotal())}</strong></div><div class="subtotal-row"><span>Entrega</span><strong>${selected.costo?money(selected.costo):"Gratis"}</strong></div><div class="total-row"><span>Total</span><strong>${money(subtotal()+selected.costo)}</strong></div></div><button class="btn btn-lila" type="submit">Confirmar pedido</button></form><button class="back-button" type="button" data-action="back-cart">Volver al carrito</button>`;
+      $("#cart-foot").innerHTML="";
+      if(prev){[["customer-name","name"],["customer-phone","phone"],["customer-address","address"],["customer-notes","notes"]].forEach(([id,k])=>{const el=$("#"+id);if(el&&prev[k])el.value=prev[k];});const r=$(`#order-form input[name="delivery"][value="${state.delivery}"]`);if(r)r.focus();}
+    }
+    function renderSuccess() {
+      const o=state.order;if(!o)return;
+      $("#cart-content").innerHTML=`<p>Pedido <strong>${escapeHTML(o.number)}</strong> · Total <strong>${money(o.total)}</strong></p><div class="success-step"><h3>1. Envíe su pedido por WhatsApp</h3><a class="btn btn-agua" href="${o.wa}" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a><p>La profe confirma por este medio que haya disponibilidad de los productos y tallas.</p></div><div class="success-step"><h3>2. Pague con SINPE Móvil</h3><p>Después de confirmar la disponibilidad, haga la transferencia y envíe el comprobante en el mismo chat.</p><div class="sinpe-box"><div class="copy-row"><span>Número: <strong id="sinpe-number">${escapeHTML(CONFIG.sinpe.numero)}</strong></span><button class="copy-btn" type="button" data-action="copy" data-copy="${escapeHTML(CONFIG.sinpe.numero)}">Copiar número</button></div><div class="copy-row"><span>Nombre: <strong id="sinpe-name">${escapeHTML(CONFIG.sinpe.nombre)}</strong></span><button class="copy-btn" type="button" data-action="copy" data-copy="${escapeHTML(CONFIG.sinpe.nombre)}">Copiar nombre</button></div><div class="copy-row"><span>Total: <strong>${money(o.total)}</strong></span><button class="copy-btn" type="button" data-action="copy" data-copy="${money(o.total)}">Copiar total</button></div></div></div><details class="message-details"><summary>Ver mensaje del pedido</summary><div class="message-text" id="order-message">${escapeHTML(o.message)}</div><button class="copy-btn" type="button" data-action="copy-message">Copiar mensaje</button></details>`;
+      $("#cart-foot").innerHTML=`<button class="btn btn-lila" style="width:100%" type="button" data-action="finish">Seguir comprando</button>`;
+    }
+    function selectedDelivery() { return CONFIG.entregas.find(d=>d.id===state.delivery)||CONFIG.entregas[0]; }
+    function updateDelivery() {
+      const form=$("#order-form");if(!form)return;
+      const data=new FormData(form);state.delivery=data.get("delivery")||CONFIG.entregas[0].id;
+      const d=selectedDelivery(),wrap=$("#address-wrap"),address=$("#customer-address");
+      wrap.hidden=!d.direccion;address.required=!!d.direccion;
+      renderForm();
+    }
+    function phoneValid(phone) { return /^\d{8}$/.test(String(phone).replace(/[\s-]/g,"")); }
+    function submitOrder(form) {
+      const data=new FormData(form),name=String(data.get("name")||"").trim(),phone=String(data.get("phone")||"").trim(),address=String(data.get("address")||"").trim(),notes=String(data.get("notes")||"").trim(),d=selectedDelivery();
+      let valid=true;
+      $("#name-error").textContent=name?"":"Escriba su nombre completo."; if(!name)valid=false;
+      $("#phone-error").textContent=phoneValid(phone)?"":"Escriba un teléfono de Costa Rica de 8 dígitos."; if(!phoneValid(phone))valid=false;
+      $("#address-error").textContent=(!d.direccion||address)?"":"Escriba la dirección exacta para esta entrega."; if(d.direccion&&!address)valid=false;
+      if(!valid){const bad=$("#name-error").textContent?$("#customer-name"):$("#phone-error").textContent?$("#customer-phone"):$("#customer-address");bad.focus();return;}
+      const orderNo="BRZ-"+String(Math.floor(1000+Math.random()*9000));
+      const total=subtotal()+d.costo;
+      const lines=cart.map((line,i)=>{const p=findProduct(line.id);return `${line.qty} × ${p.nombre} (${line.color}${line.size?`, ${line.size}`:""}) ${money(p.precio*line.qty)}`;});
+      const msg=["Hola, quiero confirmar este pedido de Brazada.",`Pedido: ${orderNo}`,"",...lines,"",`Subtotal: ${money(subtotal())}`,`Entrega: ${d.nombre} ${d.costo?money(d.costo):"Gratis"}`,`Total: ${money(total)}`,"",`Nombre: ${name}`,`Teléfono: ${phone}`,...(d.direccion?[`Dirección: ${address}`]:[]),...(notes?[`Notas: ${notes}`]:[]),"","Pago por SINPE Móvil. Le envío el comprobante por aquí."].join("\n");
+      const base=CONFIG.whatsapp?`https://wa.me/${encodeURIComponent(CONFIG.whatsapp)}`:"https://wa.me/";
+      state.order={number:orderNo,total,message:msg,wa:`${base}?text=${encodeURIComponent(msg)}`};
+      state.view="listo";renderCart();focusFirst($("#cart-dialog"));
+    }
+    function showToast() { const t=$("#toast");t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),4500); }
+    async function copyText(text,button) {
+      let copied=false;
+      try { if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);copied=true;} } catch (_) {}
+      if(!copied) {
+        const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();
+        try { copied=document.execCommand("copy"); } catch (_) {} area.remove();
+      }
+      if(button){const old=button.textContent;button.textContent=copied?"Copiado":"Seleccione y copie";setTimeout(()=>button.textContent=old,1800);}
+    }
+    function renderFeature() { const p=findProduct("kit"),c=splitColor(p.colores[0]);$("#feature-art").innerHTML=draw(p.dibujo,c.main,c.accent,p.nombre);$("#feature-price").textContent=money(p.precio); }
+
+    document.addEventListener("click",e=>{
+      const el=e.target.closest("[data-action],[data-filter-category],[data-audience],[data-color],[data-size]");
+      if(!el)return;
+      const action=el.dataset.action;
+      if(el.dataset.filterCategory){state.category=el.dataset.filterCategory;setupFilters();return;}
+      if(el.dataset.audience){state.audience=el.dataset.audience;$$("[data-audience]").forEach(b=>b.setAttribute("aria-pressed",String(b===el)));renderProducts();return;}
+      if(el.dataset.color!==undefined){state.selectedColor=Number(el.dataset.color);renderProductModal();return;}
+      if(el.dataset.size!==undefined){state.selectedSize=el.dataset.size;renderProductModal();return;}
+      if(action==="open-product")openProduct(el.dataset.id);
+      if(action==="close-product")$("#product-dialog").close();
+      if(action==="open-cart"){state.view="carrito";renderCart();$("#cart-dialog").showModal();focusFirst($("#cart-dialog"));}
+      if(action==="close-cart")$("#cart-dialog").close();
+      if(action==="modal-qty"){state.quantity=Math.max(1,Math.min(10,state.quantity+Number(el.dataset.delta)));renderProductModal();}
+      if(action==="add-cart"){
+        const p=state.activeProduct;if(!p||p.tallas&&!state.selectedSize)return;
+        const color=p.colores[state.selectedColor],found=cart.find(x=>x.id===p.id&&x.color===color&&x.size===state.selectedSize);
+        if(found)found.qty=Math.min(10,found.qty+state.quantity);else cart.push({id:p.id,color,size:state.selectedSize,qty:state.quantity});
+        saveCart();renderCount();$("#product-dialog").close();showToast();
+      }
+      if(action==="checkout"){state.view="datos";renderCart();focusFirst($("#cart-dialog"));}
+      if(action==="back-cart"){const f=$("#order-form");if(f)state.formData=Object.fromEntries(new FormData(f));state.view="carrito";renderCart();}
+      if(action==="line-qty"){const line=cart[Number(el.dataset.index)];if(line){line.qty=Math.max(1,Math.min(10,line.qty+Number(el.dataset.delta)));saveCart();renderCount();renderCart();}}
+      if(action==="remove-line"){cart.splice(Number(el.dataset.index),1);saveCart();renderCount();renderCart();}
+      if(action==="clear-filters"){state.category="todo";state.audience="Todos";state.recommended=false;state.search="";$("#search").value="";setupFilters();}
+      if(action==="copy")copyText(el.dataset.copy,el);
+      if(action==="copy-message")copyText(state.order.message,el);
+      if(action==="finish"){cart=[];saveCart();renderCount();state.view="carrito";state.order=null;$("#cart-dialog").close();renderCart();}
+    });
+    $("#recommended-filter").addEventListener("click",()=>{state.recommended=!state.recommended;$("#recommended-filter").setAttribute("aria-pressed",String(state.recommended));renderProducts();});
+    $("#search").addEventListener("input",e=>{state.search=e.target.value.trim();renderProducts();});
+    document.addEventListener("change",e=>{
+      if(e.target.name==="delivery"){state.delivery=e.target.value;renderForm();}
+    });
+    document.addEventListener("submit",e=>{
+      if(e.target.id==="order-form"){e.preventDefault();submitOrder(e.target);}
+    });
+    $("#product-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
+    $("#cart-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
+    setupFilters();renderCount();renderCart();renderFeature();
+  </script>
+</body>
+</html>
