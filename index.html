@@ -126,6 +126,7 @@
     .product-drawing { width:100%; height:100%; display:block; }
     .tag { position:absolute; z-index:2; top:10px; left:10px; max-width:calc(100% - 20px); border-radius:999px; padding:5px 9px; font-size:.75rem; line-height:1.2; font-weight:700; }
     .tag.recomendado { background:var(--lila-soft); color:var(--lila-ink); }
+    .tag.agotado { background:var(--surface); color:var(--muted); border:1px solid var(--line); }
     .tag.nuevo { background:var(--agua-soft); color:var(--agua-ink); }
     .tag.ultimas { background:#FFF0D6; color:#775018; }
     @media (prefers-color-scheme: dark) { .tag.ultimas { background:#42351D; color:#F2D38D; } }
@@ -439,6 +440,20 @@
       {id:"bolso",cat:"accesorios",nombre:"Bolso de Malla",precio:7900,para:"Todos",corto:"Llevá tu equipo mojado con ventilación.",desc:"Bolso de malla para transportar el equipo de natación mojado y dejar que circule el aire.",colores:["Negro","Lila","Celeste"],tallas:null,tallaNombre:"Talla",dibujo:"bolso",tag:null,detalles:["Malla ventilada para guardar equipo mojado.","Cordón ajustable para cerrar.","Cómodo para llevar a tus clases." ]},
       {id:"kit",cat:"accesorios",nombre:"Kit Primera Clase",precio:12900,para:"Todos",corto:"Gafas Junior, gorra de silicona y tapones.",desc:"Todo lo esencial para empezar: gafas Junior, gorra de silicona y tapones. Por separado cuesta ₡14.500, así que con el kit ahorra ₡1.600.",profe:"Es lo que pido para la primera clase. Con esto ya podés empezar.",colores:["Lila","Celeste","Rosa"],tallas:["Niño","Adulto"],tallaNombre:"Talla de gorra",dibujo:"kit",tag:"recomendado",detalles:["Incluye gafas Junior, gorra de silicona y tapones.","El kit cuesta ₡12.900; por separado suma ₡14.500.","Una opción práctica para tu primera clase." ]}
     ];
+    // Los productos vienen de Supabase (Emily los edita en su panel); esta lista queda como respaldo si no hay conexión.
+    const PRODUCTS_URL = "https://zdrtfhnppwvoxnphfnkg.supabase.co/rest/v1/products?select=*&activo=eq.true&order=orden";
+    const SUPABASE_KEY = "sb_publishable_EyMnwp0U5d4yaKGndamxXQ_wVxhkC8c";
+    async function loadProducts() {
+      try {
+        const res = await fetch(PRODUCTS_URL, { headers: { apikey: SUPABASE_KEY } });
+        if (!res.ok) return;
+        const rows = await res.json();
+        if (!Array.isArray(rows) || !rows.length) return;
+        PRODUCTS.splice(0, PRODUCTS.length, ...rows.map(r => ({ ...r, desc: r.descripcion, tallaNombre: r.talla_nombre, tallas: r.tallas && r.tallas.length ? r.tallas : null, detalles: r.detalles || [], profe: r.profe || "" })));
+        cart = cart.filter(x => findProduct(x.id)); saveCart();
+        setupFilters(); renderCount(); renderCart(); renderFeature();
+      } catch (_) { /* sin conexión: se queda la lista de respaldo */ }
+    }
 
     const state = { category:"todo", audience:"Todos", recommended:false, search:"", activeProduct:null, selectedColor:0, selectedSize:"", quantity:1, view:"carrito", delivery:"clase", order:null };
     let cart = loadCart();
@@ -479,10 +494,10 @@
     function totalItems() { return cart.reduce((n,x)=>n+x.qty,0); }
     function subtotal() { return cart.reduce((n,x)=>{const p=findProduct(x.id);return n+(p?p.precio*x.qty:0);},0); }
     function colorSwatch(name,extra="") { const c=splitColor(name); const fill=name.includes("/")?`linear-gradient(90deg,${c.main} 0 50%,${c.accent} 50% 100%)`:c.main; return `<span class="swatch-dot ${extra}" style="background:${fill}" aria-hidden="true"></span>`; }
-    function tagHTML(tag) { const labels={recomendado:"Recomendado por la profe",nuevo:"Nuevo",ultimas:"Últimas unidades"}; return tag?`<span class="tag ${tag}">${labels[tag]}</span>`:""; }
+    function tagHTML(tag,agotado) { if(agotado)return `<span class="tag agotado">Agotado</span>`; const labels={recomendado:"Recomendado por la profe",nuevo:"Nuevo",ultimas:"Últimas unidades"}; return tag?`<span class="tag ${tag}">${labels[tag]}</span>`:""; }
     function productCard(p) {
       const c=splitColor(p.colores[0]);
-      return `<article class="product-card">${tagHTML(p.tag)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}${p.para==="Niños"?'<span class="kids-badge">Emily Kids</span>':""}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" role="img" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
+      return `<article class="product-card">${tagHTML(p.tag,p.agotado)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}${p.para==="Niños"?'<span class="kids-badge">Emily Kids</span>':""}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" role="img" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
     }
     function renderProducts() {
       const list=PRODUCTS.filter(p=>(state.category==="todo"||p.cat===state.category)&&(state.audience==="Todos"||p.para==="Todos"||p.para===state.audience)&&(!state.recommended||p.tag==="recomendado")&&(`${p.nombre} ${p.corto} ${p.cat} ${p.colores.join(" ")}`.toLowerCase().includes(state.search.toLowerCase())));
@@ -509,7 +524,7 @@
       const {main,accent}=splitColor(p.colores[state.selectedColor]);
       $("#modal-art").innerHTML=draw(p.dibujo,main,accent,p.nombre);
       const sizeBlock=p.tallas?`<span class="option-label" id="size-label">${escapeHTML(p.tallaNombre)}</span><div class="size-options" role="group" aria-labelledby="size-label">${p.tallas.map(s=>`<button type="button" class="size-option" data-size="${escapeHTML(s)}" aria-pressed="${state.selectedSize===s}">${escapeHTML(s)}</button>`).join("")}</div>${["trajes","entrenamiento"].includes(p.cat)&&["aletas","traje","trajenina","jammer","boxer"].includes(p.dibujo)?`<p class="size-note">Guía de tallas: si tenés dudas, consultale a la profe antes de confirmar.</p>`:""}`:`<span class="option-label">Talla</span><p class="size-note">${p.id==="gafas-junior"?"Talla única, recomendada para niños de 6 a 12 años.":"Talla única."}</p>`;
-      $("#modal-info").innerHTML=`<div class="modal-kicker">${CAT_NAMES[p.cat]} · ${p.para}</div><h2 id="modal-name">${escapeHTML(p.nombre)}</h2><div class="modal-price">${money(p.precio)}</div><p class="modal-desc">${escapeHTML(p.desc)}</p>${p.profe?`<div class="profe-quote"><strong>La profe dice</strong>${escapeHTML(p.profe)}</div>`:""}<span class="option-label" id="color-label">Color: ${escapeHTML(p.colores[state.selectedColor])}</span><div class="color-options" role="radiogroup" aria-labelledby="color-label">${p.colores.map((c,i)=>`<button type="button" class="color-option" role="radio" aria-checked="${i===state.selectedColor}" data-color="${i}">${colorSwatch(c)}${escapeHTML(c)}</button>`).join("")}</div>${sizeBlock}<div class="qty-row"><strong>Cantidad</strong><div class="stepper"><button type="button" data-action="modal-qty" data-delta="-1" aria-label="Reducir cantidad">−</button><output>${state.quantity}</output><button type="button" data-action="modal-qty" data-delta="1" aria-label="Aumentar cantidad">+</button></div></div><button class="btn btn-lila modal-add" type="button" data-action="add-cart" ${p.tallas&&!state.selectedSize?"disabled":""}>${p.tallas&&!state.selectedSize?"Elegí una talla":`Agregar al carrito · ${money(p.precio*state.quantity)}`}</button><ul class="detail-list">${p.detalles.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>`;
+      $("#modal-info").innerHTML=`<div class="modal-kicker">${CAT_NAMES[p.cat]} · ${p.para}</div><h2 id="modal-name">${escapeHTML(p.nombre)}</h2><div class="modal-price">${money(p.precio)}</div><p class="modal-desc">${escapeHTML(p.desc)}</p>${p.profe?`<div class="profe-quote"><strong>La profe dice</strong>${escapeHTML(p.profe)}</div>`:""}<span class="option-label" id="color-label">Color: ${escapeHTML(p.colores[state.selectedColor])}</span><div class="color-options" role="radiogroup" aria-labelledby="color-label">${p.colores.map((c,i)=>`<button type="button" class="color-option" role="radio" aria-checked="${i===state.selectedColor}" data-color="${i}">${colorSwatch(c)}${escapeHTML(c)}</button>`).join("")}</div>${sizeBlock}<div class="qty-row"><strong>Cantidad</strong><div class="stepper"><button type="button" data-action="modal-qty" data-delta="-1" aria-label="Reducir cantidad">−</button><output>${state.quantity}</output><button type="button" data-action="modal-qty" data-delta="1" aria-label="Aumentar cantidad">+</button></div></div><button class="btn btn-lila modal-add" type="button" data-action="add-cart" ${p.agotado||(p.tallas&&!state.selectedSize)?"disabled":""}>${p.agotado?"Agotado por ahora":p.tallas&&!state.selectedSize?"Elegí una talla":`Agregar al carrito · ${money(p.precio*state.quantity)}`}</button><ul class="detail-list">${p.detalles.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>`;
     }
     function renderCount() { $("#cart-count").textContent=String(totalItems()); }
     function renderCart() {
@@ -569,7 +584,7 @@
       }
       if(button){const old=button.textContent;button.textContent=copied?"Copiado":"Seleccioná y copiá";setTimeout(()=>button.textContent=old,1800);}
     }
-    function renderFeature() { const p=findProduct("kit"),c=splitColor(p.colores[0]);$("#feature-art").innerHTML=draw(p.dibujo,c.main,c.accent,p.nombre);$("#feature-price").textContent=money(p.precio); }
+    function renderFeature() { const p=findProduct("kit"); $(".pool-panel").hidden=!p; if(!p)return; const c=splitColor(p.colores[0]);$("#feature-art").innerHTML=draw(p.dibujo,c.main,c.accent,p.nombre);$("#feature-price").textContent=money(p.precio); }
 
     document.addEventListener("click",e=>{
       const el=e.target.closest("[data-action],[data-filter-category],[data-audience],[data-color],[data-size]");
@@ -609,7 +624,7 @@
     });
     $("#product-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
     $("#cart-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
-    setupFilters();renderCount();renderCart();renderFeature();
+    setupFilters();renderCount();renderCart();renderFeature();loadProducts();
   </script>
 </body>
 </html>

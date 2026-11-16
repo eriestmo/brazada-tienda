@@ -456,3 +456,59 @@ grant update (name, phone) on public.profiles to authenticated; -- el plan lo ca
 revoke update (name, age, is_self, account_id) on public.students from authenticated;
 revoke update, delete on public.students from authenticated;
 grant update (name, age) on public.students to authenticated;
+
+-- Productos de la tienda --------------------------------------------------------
+-- Todos ven los productos activos; solo la profe crea, edita u oculta productos (panel > Productos).
+create table if not exists public.products (
+  id text primary key check (id ~ '^[a-z0-9-]+$'),
+  cat text not null check (cat in ('gafas', 'gorras', 'entrenamiento', 'trajes', 'accesorios')),
+  nombre text not null check (length(trim(nombre)) > 0),
+  precio int not null check (precio >= 0),
+  para text not null default 'Todos' check (para in ('Niños', 'Adultos', 'Todos')),
+  corto text not null default '',
+  descripcion text not null default '',
+  profe text,
+  colores text[] not null default array['Celeste']::text[] check (cardinality(colores) > 0),
+  tallas text[],
+  talla_nombre text not null default 'Talla',
+  dibujo text not null default 'kit',
+  tag text check (tag in ('recomendado', 'nuevo', 'ultimas')),
+  detalles text[] not null default '{}'::text[],
+  agotado boolean not null default false,
+  activo boolean not null default true,
+  orden int not null default 100,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.products enable row level security;
+drop policy if exists "ver productos" on public.products;
+create policy "ver productos" on public.products for select to anon, authenticated
+  using (activo or public.is_profe());
+drop policy if exists "profe crea productos" on public.products;
+create policy "profe crea productos" on public.products for insert to authenticated
+  with check (public.is_profe());
+drop policy if exists "profe edita productos" on public.products;
+create policy "profe edita productos" on public.products for update to authenticated
+  using (public.is_profe()) with check (public.is_profe());
+revoke insert, update, delete on public.products from anon;
+revoke delete on public.products from authenticated;
+
+insert into public.products (id, cat, nombre, precio, para, corto, descripcion, profe, colores, tallas, talla_nombre, dibujo, tag, detalles, orden) values
+  ('gafas-junior', 'gafas', 'Gafas Junior Antiempañante', 6500, 'Niños', 'Ajuste cómodo para tus primeras brazadas.', 'Gafas para niños de 6 a 12 años, con ajuste suave y lentes antiempañantes para ver con claridad durante la clase.', 'Son las que uso con mis alumnos de 6 a 12 años: ajustan sin apretar y no se empañan.', array['Lila', 'Celeste', 'Rosa']::text[], null, 'Edad', 'gafas', 'recomendado', array['Recomendadas para edades de 6 a 12 años.', 'Puente y correa ajustables para un sello cómodo.', 'Lentes antiempañantes para piscina.']::text[], 1),
+  ('gafas-entreno', 'gafas', 'Gafas de Entrenamiento', 9900, 'Adultos', 'Lente claro para piscina techada.', 'Gafas cómodas para entrenamiento frecuente en piscina techada. Su lente claro ayuda a mantener una visión natural bajo techo.', null, array['Negro', 'Celeste', 'Transparente']::text[], null, 'Talla', 'gafas', null, array['Lente claro para piscinas techadas.', 'Correa ajustable para un calce firme.', 'Diseñadas para sesiones frecuentes.']::text[], 2),
+  ('gafas-espejo', 'gafas', 'Gafas Espejadas Pro', 14900, 'Adultos', 'Protección UV para nadar al aire libre.', 'Gafas con lente espejado para entrenar al aire libre. La protección UV ayuda a cuidar tus ojos cuando nadás bajo el sol.', null, array['Plateado', 'Azul', 'Lila']::text[], null, 'Talla', 'gafas', 'nuevo', array['Lente espejado para reducir el brillo.', 'Protección UV para piscina al aire libre.', 'Correa ajustable de buen soporte.']::text[], 3),
+  ('gorra-silicona', 'gorras', 'Gorra de Silicona', 5500, 'Todos', 'Ayuda a proteger el pelo del cloro.', 'Gorra flexible de silicona para cubrir el cabello y ayudar a reducir el contacto con el cloro. Disponible en tallas para niño y adulto.', 'Dura más que la de tela y protege mejor el pelo del cloro.', array['Lila', 'Celeste', 'Negro', 'Blanco']::text[], array['Niño', 'Adulto']::text[], 'Talla', 'gorra', 'recomendado', array['Material flexible de silicona.', 'Disponible en talla de niño y adulto.', 'Se enjuaga con facilidad después de la clase.']::text[], 4),
+  ('gorra-lycra', 'gorras', 'Gorra de Lycra', 3900, 'Niños', 'Cómoda para los más pequeños; no jala el pelo.', 'Gorra suave de lycra, cómoda para los más pequeños y fácil de poner. No jala el pelo al retirarla.', null, array['Celeste', 'Rosa', 'Amarillo']::text[], array['Niño', 'Adulto']::text[], 'Talla', 'gorra', null, array['Tela suave que no jala el pelo.', 'Fácil de poner y quitar.', 'Disponible en talla de niño y adulto.']::text[], 5),
+  ('tabla', 'entrenamiento', 'Tabla de Nado', 8500, 'Todos', 'Practique la patada con buen apoyo.', 'Tabla de nado liviana que brinda apoyo para practicar la patada y mejorar la posición de las piernas. La Junior es para menores de 10 años.', 'La base para aprender a patear bien. La Junior es para menores de 10 años.', array['Celeste', 'Lila', 'Amarillo']::text[], array['Junior', 'Adulto']::text[], 'Tamaño', 'tabla', 'recomendado', array['Ayuda a trabajar la patada por separado.', 'Tamaño Junior recomendado para menores de 10 años.', 'Espuma liviana fácil de sujetar.']::text[], 6),
+  ('pull-buoy', 'entrenamiento', 'Pull Buoy', 7500, 'Adultos', 'Aísle las piernas y practique la brazada.', 'Flotador para colocar entre las piernas y concentrarse en la técnica de brazos y la posición del cuerpo.', null, array['Lila', 'Celeste']::text[], null, 'Talla', 'pullbuoy', null, array['Diseñado para entrenar la brazada.', 'Se coloca entre los muslos.', 'Liviano y fácil de llevar.']::text[], 7),
+  ('manoplas', 'entrenamiento', 'Manoplas de Entrenamiento', 8900, 'Adultos', 'Sienta mejor el agarre del agua.', 'Manoplas para trabajar el agarre y la fuerza de la brazada. Elegí una talla cómoda para tu mano.', null, array['Celeste', 'Lila', 'Negro']::text[], array['S', 'M', 'L']::text[], 'Talla', 'manoplas', null, array['Para practicar el agarre del agua.', 'Correa ajustable para sujetarlas a la mano.', 'Tallas S, M y L.']::text[], 8),
+  ('aletas', 'entrenamiento', 'Aletas Cortas de Silicona', 18500, 'Todos', 'Impulso y control para tus entrenamientos.', 'Aletas cortas de silicona para trabajar la patada con control en piscina. Seleccioná tu talla de pie.', null, array['Celeste', 'Lila', 'Amarillo']::text[], array['32-33', '34-35', '36-37', '38-39', '40-41', '42-43']::text[], 'Talla de pie', 'aletas', 'ultimas', array['Diseño corto para entrenamientos en piscina.', 'Silicona flexible y cómoda.', 'Elegí la talla según tu número de calzado.']::text[], 9),
+  ('traje-dama', 'trajes', 'Traje Enterizo Dama', 24900, 'Adultos', 'Tela resistente al cloro para entrenar.', 'Traje enterizo de natación con tela resistente al cloro y calce pensado para acompañar tus entrenamientos.', null, array['Negro/Lila', 'Azul/Celeste', 'Coral/Negro']::text[], array['XS', 'S', 'M', 'L', 'XL']::text[], 'Talla', 'traje', 'recomendado', array['Tela resistente al cloro.', 'Diseño enterizo para nadar con comodidad.', 'Cambio de talla sujeto a condiciones de higiene.']::text[], 10),
+  ('jammer', 'trajes', 'Jammer Caballero', 19900, 'Adultos', 'Calce firme para tus sesiones de piscina.', 'Jammer de natación de largo a la rodilla, pensado para un calce firme y cómodo durante el entrenamiento.', null, array['Negro/Celeste', 'Azul/Lila']::text[], array['28', '30', '32', '34', '36']::text[], 'Talla', 'jammer', null, array['Largo a la rodilla para entrenar.', 'Cintura elástica con cordón ajustable.', 'Tallas numéricas del 28 al 36.']::text[], 11),
+  ('traje-nina', 'trajes', 'Traje de Baño Niña', 15900, 'Niños', 'Enterizo con protección UV 50+.', 'Traje de baño enterizo para niña con protección UV 50+, listo para clases y juegos en el agua.', null, array['Lila/Celeste', 'Rosa/Lila', 'Turquesa/Amarillo']::text[], array['4', '6', '8', '10', '12', '14']::text[], 'Talla', 'trajenina', null, array['Protección UV 50+.', 'Diseño enterizo cómodo para nadar.', 'Tallas infantiles del 4 al 14.']::text[], 12),
+  ('boxer-nino', 'trajes', 'Bóxer de Natación Niño', 12900, 'Niños', 'Bóxer cómodo para la clase de natación.', 'Bóxer de natación para niño con cintura ajustable y calce cómodo para moverse con libertad en la piscina.', null, array['Celeste/Negro', 'Azul/Amarillo', 'Lila/Negro']::text[], array['4', '6', '8', '10', '12', '14']::text[], 'Talla', 'boxer', null, array['Cintura elástica con ajuste.', 'Diseño cómodo para clases de natación.', 'Tallas infantiles del 4 al 14.']::text[], 13),
+  ('tapones', 'accesorios', 'Tapones de Silicona', 2500, 'Todos', 'Incluye estuche para guardarlos.', 'Tapones de silicona reutilizables para ayudar a evitar que entre agua en los oídos. Incluye estuche.', null, array['Celeste', 'Lila', 'Amarillo']::text[], null, 'Talla', 'tapones', null, array['Silicona suave y reutilizable.', 'Incluye estuche de guardado.', 'Enjuague y deje secar después de usar.']::text[], 14),
+  ('toalla', 'accesorios', 'Toalla de Microfibra', 9500, 'Todos', 'Secado rápido, 70 x 140 cm.', 'Toalla de microfibra liviana y compacta, de secado rápido. Medida: 70 x 140 cm.', null, array['Lila', 'Celeste', 'Turquesa']::text[], null, 'Talla', 'toalla', null, array['Medida de 70 x 140 cm.', 'Secado rápido después de nadar.', 'Liviana para llevar a clase.']::text[], 15),
+  ('bolso', 'accesorios', 'Bolso de Malla', 7900, 'Todos', 'Llevá tu equipo mojado con ventilación.', 'Bolso de malla para transportar el equipo de natación mojado y dejar que circule el aire.', null, array['Negro', 'Lila', 'Celeste']::text[], null, 'Talla', 'bolso', null, array['Malla ventilada para guardar equipo mojado.', 'Cordón ajustable para cerrar.', 'Cómodo para llevar a tus clases.']::text[], 16),
+  ('kit', 'accesorios', 'Kit Primera Clase', 12900, 'Todos', 'Gafas Junior, gorra de silicona y tapones.', 'Todo lo esencial para empezar: gafas Junior, gorra de silicona y tapones. Por separado cuesta ₡14.500, así que con el kit ahorra ₡1.600.', 'Es lo que pido para la primera clase. Con esto ya podés empezar.', array['Lila', 'Celeste', 'Rosa']::text[], array['Niño', 'Adulto']::text[], 'Talla de gorra', 'kit', 'recomendado', array['Incluye gafas Junior, gorra de silicona y tapones.', 'El kit cuesta ₡12.900; por separado suma ₡14.500.', 'Una opción práctica para tu primera clase.']::text[], 17)
+on conflict (id) do nothing;
