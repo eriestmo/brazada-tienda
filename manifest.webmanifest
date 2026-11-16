@@ -1,0 +1,15 @@
+{
+  "name": "Emily Natación",
+  "short_name": "Emily Natación",
+  "description": "Tienda y clases de natación con la profe Emily en Costa Rica.",
+  "lang": "es-CR",
+  "start_url": "./clases.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3FBFD",
+  "theme_color": "#6A2C95",
+  "icons": [
+    { "src": "assets/icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
