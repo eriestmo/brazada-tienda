@@ -87,6 +87,7 @@ insert into public.class_types (id, nombre, edades, minutos, cupo, orden) values
   ('adultos-tecnica',  'Técnica y acondicionamiento',  'Adultos',             60, 8, 4),
   ('privada',          'Clase privada',                'Todas las edades',    45, 1, 5)
 on conflict (id) do nothing;
+update public.class_types set nombre = 'Clase privada a domicilio', edades = 'Bebés, niños, adultos y adultos mayores' where id = 'privada';
 
 insert into public.schedule (weekday, start_time, class_type) values
   (1, '16:00', 'ninos-inicio'), (1, '17:00', 'ninos-intermedio'), (1, '18:30', 'adultos-inicio'),
