@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-16T18:06:40.505Z",
+        "reason": "brief pin: Emily Natación brandbook ('Uso de la gráfica') prescribes Playfair italic for accent phrases; only the accent words are italic"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-16T18:06:40.531Z",
+        "reason": "false positive: .hero-band is a full-bleed band; its child .wrap carries the side gutter (max(16px, safe-area)), text is inset"
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "supabase/emails/restablecer-contrasena.html"
+        ],
+        "createdAt": "2026-11-16T18:06:40.555Z",
+        "reason": "brief pin: purple #6A2C95 and cyan are the client's brandbook palette; flat colors, no gradient"
+      }
+    ]
+  }
+}
