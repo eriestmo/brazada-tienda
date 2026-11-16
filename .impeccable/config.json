@@ -29,6 +29,15 @@
         ],
         "createdAt": "2026-11-16T18:06:40.555Z",
         "reason": "brief pin: purple #6A2C95 and cyan are the client's brandbook palette; flat colors, no gradient"
+      },
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-16T18:58:25.746Z",
+        "reason": "intentional: brand hero (Persuade surface); headline is 2 lines on desktop and reads at a glance"
       }
     ]
   }

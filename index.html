@@ -274,10 +274,14 @@
     }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important;transition:none!important;animation:none!important; } }
       .ig-link { color:var(--lila-ink);font-weight:700; }
+    ::placeholder { color:var(--muted); opacity:1; }
+    p { text-wrap:pretty; }
+    .navlinks a { padding-block:12px; }
+    .footer-links a { display:inline-block; padding-block:8px; }
   </style>
 </head>
 <body>
-  <div class="announcement">Entrega gratis en clase · Pago por SINPE Móvil · Envíos a todo el país</div>
+  <aside class="announcement" aria-label="Aviso">Entrega gratis en clase · Pago por SINPE Móvil · Envíos a todo el país</aside>
   <header class="header">
     <div class="wrap navrow">
       <a class="brand" href="#inicio" aria-label="Emily Natación, inicio"><picture><source srcset="assets/logo-emily-blanco.webp" media="(prefers-color-scheme: dark)"><img src="assets/logo-emily.webp" width="758" height="384" alt="Emily Natación"></picture></a>
@@ -311,7 +315,7 @@
     <section class="content-section" id="tienda">
       <div class="wrap">
         <div class="section-head"><div><h2>Tienda</h2><p>Equipo que podés usar en tus clases y entrenamientos.</p></div></div>
-        <a class="kids-band" href="#tienda" data-audience="Niños"><img src="assets/emily-kids.webp" width="369" height="455" alt="Emily Kids"><span><strong>Emily Kids</strong> Gafas, gorras y trajes de baño para los más pequeños.</span><span class="btn btn-rosa">Ver lo de niños</span></a>
+        <a class="kids-band" href="#tienda" data-audience="Niños"><img src="assets/emily-kids.webp" width="369" height="455" alt="Emily Kids" loading="lazy" decoding="async"><span><strong>Emily Kids</strong> Gafas, gorras y trajes de baño para los más pequeños.</span><span class="btn btn-rosa">Ver lo de niños</span></a>
         <div class="filters">
           <div class="filter-row categories" id="category-filters" aria-label="Categorías"></div>
           <div class="filter-row">
@@ -343,7 +347,7 @@
         <article class="teacher-card">
           <div class="teacher-photo">
             <div>
-              <img src="assets/logo-emily-blanco.webp" width="758" height="384" alt="Emily Natación">
+              <img src="assets/logo-emily-blanco.webp" width="758" height="384" alt="Emily Natación" loading="lazy" decoding="async">
               <span>Foto de la profe</span>
             </div>
           </div>
@@ -476,7 +480,7 @@
     function tagHTML(tag) { const labels={recomendado:"Recomendado por la profe",nuevo:"Nuevo",ultimas:"Últimas unidades"}; return tag?`<span class="tag ${tag}">${labels[tag]}</span>`:""; }
     function productCard(p) {
       const c=splitColor(p.colores[0]);
-      return `<article class="product-card">${tagHTML(p.tag)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}${p.para==="Niños"?'<span class="kids-badge">Emily Kids</span>':""}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
+      return `<article class="product-card">${tagHTML(p.tag)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}${p.para==="Niños"?'<span class="kids-badge">Emily Kids</span>':""}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" role="img" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
     }
     function renderProducts() {
       const list=PRODUCTS.filter(p=>(state.category==="todo"||p.cat===state.category)&&(state.audience==="Todos"||p.para==="Todos"||p.para===state.audience)&&(!state.recommended||p.tag==="recomendado")&&(`${p.nombre} ${p.corto} ${p.cat} ${p.colores.join(" ")}`.toLowerCase().includes(state.search.toLowerCase())));
