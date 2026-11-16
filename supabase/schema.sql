@@ -154,7 +154,7 @@ declare
   local_ts timestamp := p_starts at time zone 'America/Costa_Rica';
 begin
   if p_starts <= now() then
-    raise exception 'Esa clase ya empezó. Elija otro horario.';
+    raise exception 'Esa clase ya empezó. Elegí otro horario.';
   end if;
   if p_starts > now() + interval '29 days' then
     raise exception 'Solo se puede reservar en las próximas 4 semanas.';
@@ -196,7 +196,7 @@ begin
   p_starts := date_trunc('minute', p_starts);
   perform 1 from public.students where id = p_student and account_id = auth.uid() for share;
   if not found then
-    raise exception 'No se encontró el alumno en su cuenta.';
+    raise exception 'No se encontró el alumno en tu cuenta.';
   end if;
   perform public.check_slot(p_class, p_starts);
   perform pg_advisory_xact_lock(hashtext(p_class || ':' || extract(epoch from p_starts)::text));
@@ -234,7 +234,7 @@ begin
     raise exception 'No se encontró la reserva.';
   end if;
   if b.starts_at - now() < interval '12 hours' then
-    raise exception 'Faltan menos de 12 horas para la clase. Escríbale a la profe por WhatsApp.';
+    raise exception 'Faltan menos de 12 horas para la clase. Escribile a la profe por WhatsApp.';
   end if;
   if p_starts - now() < interval '12 hours' then
     raise exception 'El nuevo horario debe ser al menos 12 horas después de ahora.';
@@ -270,7 +270,7 @@ begin
     raise exception 'No se encontró la reserva.';
   end if;
   if b.starts_at - now() < interval '12 hours' then
-    raise exception 'Faltan menos de 12 horas para la clase. Escríbale a la profe por WhatsApp.';
+    raise exception 'Faltan menos de 12 horas para la clase. Escribile a la profe por WhatsApp.';
   end if;
   update public.bookings set status = 'cancelada', updated_at = now() where id = b.id;
 end $$;
@@ -284,7 +284,7 @@ begin
   end if;
   if exists (select 1 from public.bookings
              where student_id = p_student and status = 'reservada' and starts_at > now()) then
-    raise exception 'Primero cancele las clases futuras de este alumno.';
+    raise exception 'Primero cancelá las clases futuras de este alumno.';
   end if;
   delete from public.students where id = p_student;
 end $$;
