@@ -362,20 +362,43 @@ begin
   end if;
 end $$;
 
+-- Asistencia: la profe marca si la persona vino ('asistió'), no vino ('ausente') o lo deshace ('reservada').
+alter table public.bookings drop constraint if exists bookings_status_check;
+alter table public.bookings add constraint bookings_status_check
+  check (status in ('reservada', 'cancelada', 'asistió', 'ausente'));
+
+create or replace function public.mark_attendance(p_booking uuid, p_status text) returns void
+language plpgsql security definer set search_path = public, pg_temp as $$
+begin
+  if not public.is_profe() then
+    raise exception 'Esta acción es solo para la profe.';
+  end if;
+  if p_status not in ('asistió', 'ausente', 'reservada') then
+    raise exception 'Estado de asistencia no válido.';
+  end if;
+  update public.bookings set status = p_status, updated_at = now()
+  where id = p_booking and status in ('reservada', 'asistió', 'ausente') and starts_at <= now();
+  if not found then
+    raise exception 'Solo se puede marcar asistencia de una clase que ya empezó.';
+  end if;
+end $$;
+
 -- Permisos de funciones ------------------------------------------------------
 
 revoke execute on function
   public.handle_new_user(), public.check_slot(text, timestamptz),
   public.book_class(uuid, text, timestamptz), public.reschedule_booking(uuid, timestamptz),
   public.cancel_booking(uuid), public.remove_student(uuid), public.ensure_my_payment(),
-  public.report_payment(uuid), public.confirm_payment(uuid), public.admin_cancel_booking(uuid)
+  public.report_payment(uuid), public.confirm_payment(uuid), public.admin_cancel_booking(uuid),
+  public.mark_attendance(uuid, text)
   from public, anon;
 revoke execute on function public.handle_new_user(), public.check_slot(text, timestamptz) from authenticated;
 grant execute on function public.handle_new_user() to supabase_auth_admin;
 grant execute on function
   public.book_class(uuid, text, timestamptz), public.reschedule_booking(uuid, timestamptz),
   public.cancel_booking(uuid), public.remove_student(uuid), public.ensure_my_payment(),
-  public.report_payment(uuid), public.confirm_payment(uuid), public.admin_cancel_booking(uuid)
+  public.report_payment(uuid), public.confirm_payment(uuid), public.admin_cancel_booking(uuid),
+  public.mark_attendance(uuid, text)
   to authenticated;
 grant execute on function public.slot_counts(timestamptz, timestamptz), public.is_profe(), public.cr_today()
   to anon, authenticated;
