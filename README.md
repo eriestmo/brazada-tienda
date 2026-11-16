@@ -29,3 +29,9 @@ Los productos están en la lista `PRODUCTS` del mismo archivo.
 ## Marca
 
 Identidad según el brandbook de Emily Natación (`PRODUCT.md`): logos en `assets/` (`logo-emily` para fondos claros, `logo-emily-blanco` para oscuros, `emily-kids` para lo de niños), paleta celeste y morada, Poppins + Playfair Display. Instagram: [@emily.natacion](https://www.instagram.com/emily.natacion).
+
+## Mantenimiento
+
+- **Supabase activo:** `.github/workflows/mantener-supabase.yml` consulta la base cada 3 días para que el plan gratuito no la pause. Ojo: GitHub desactiva las tareas programadas si el repositorio pasa 60 días sin cambios; si llega un correo de GitHub avisando, se reactiva en la pestaña Actions.
+- **Respaldo semanal:** `scripts/respaldo.sh` exporta las tablas a `~/Respaldos/emily-natacion/AAAA-MM-DD/` (JSON, solo lectura para el usuario, se guardan los 12 últimos). Lo ejecuta cada domingo a las 9:00 la tarea de macOS `~/Library/LaunchAgents/cr.emilynatacion.respaldo.plist`; registro en `~/Respaldos/emily-natacion/respaldo.log`. Necesita la sesión de la CLI de Supabase (`supabase login`). Las contraseñas de los usuarios no se respaldan.
+- **Privacidad:** `privacidad.html` (Ley 8968, cambios y cancelaciones). El registro pide aceptarla.
