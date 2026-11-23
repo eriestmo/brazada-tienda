@@ -7,10 +7,12 @@
         "rule": "italic-serif-display",
         "value": "*",
         "files": [
-          "index.html"
+          "index.html",
+          "contacto.html",
+          "solicitudes.html"
         ],
         "createdAt": "2026-11-16T18:06:40.505Z",
-        "reason": "brief pin: Emily Natación brandbook ('Uso de la gráfica') prescribes Playfair italic for accent phrases; only the accent words are italic"
+        "reason": "brief pin: Emily Nataci\u00f3n brandbook ('Uso de la gr\u00e1fica') prescribes Playfair italic for accent phrases; only the accent words are italic"
       },
       {
         "rule": "cramped-padding",
