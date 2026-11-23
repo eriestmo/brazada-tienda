@@ -38,3 +38,17 @@ Identidad según el brandbook de Emily Natación (`PRODUCT.md`): logos en `asset
 - **Productos:** viven en la tabla `products` de Supabase. Emily los edita en Panel → Productos (precio, textos, colores, tallas, etiqueta, agotado, visible, agregar nuevos). La tienda los lee al cargar; si no hay conexión usa la lista `PRODUCTS` de `index.html` como respaldo (puede quedar desactualizada, no es la fuente de verdad).
 - **Asistencia:** en Panel → Agenda, las clases que ya empezaron muestran "Asistió" / "No vino" (y "Deshacer"). Las familias ven el registro en Mis clases → Anteriores.
 - **App instalable:** `manifest.webmanifest` + íconos en `assets/` (Android: "Instalar app"; iPhone: "Agregar a pantalla de inicio").
+
+## Recomendador con IA (clases y tienda)
+Oculto por ahora (atributo `hidden` en `#rec-productos` de `index.html` y `#recomendador` de `clases.html`). Para mostrarlo, quitar `hidden` después de los dos pasos de abajo.
+La página de clases (sección "¿Qué paquete me conviene?") y la tienda ("¿No sabe qué elegir?") llaman a la función `supabase/functions/recomendar`, que usa Lovable AI Gateway (modelo `openai/gpt-6-astra`).
+Para activarlo:
+1. `supabase secrets set LOVABLE_API_KEY=<clave de Lovable AI Gateway>`
+2. `supabase functions deploy recomendar --no-verify-jwt`
+Sin desplegar la función, los formularios muestran un mensaje de error y el resto del sitio funciona igual.
+
+## Contacto, paquetes en base de datos y página de la profe
+- Volver a ejecutar `supabase/schema.sql` en el SQL Editor de Supabase: crea `packages` (precios de paquetes), `recommendation_requests` (respuestas del recomendador) y `contact_messages` (formulario de contacto), con permisos para que solo la profe las lea.
+- Re-desplegar la función: `supabase functions deploy recomendar --no-verify-jwt`. Usa los paquetes y productos de la base de datos; el paquete y precio final salen de la tabla, no del modelo, y solo se muestran productos que existen.
+- `contacto.html`: formulario público que guarda en `contact_messages`.
+- `solicitudes.html`: página privada de la profe (ingresar con la cuenta de profe en `clases.html`). También hay un botón en su panel.

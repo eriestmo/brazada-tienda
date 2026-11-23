@@ -512,3 +512,74 @@ insert into public.products (id, cat, nombre, precio, para, corto, descripcion, 
   ('bolso', 'accesorios', 'Bolso de Malla', 7900, 'Todos', 'Llevá tu equipo mojado con ventilación.', 'Bolso de malla para transportar el equipo de natación mojado y dejar que circule el aire.', null, array['Negro', 'Lila', 'Celeste']::text[], null, 'Talla', 'bolso', null, array['Malla ventilada para guardar equipo mojado.', 'Cordón ajustable para cerrar.', 'Cómodo para llevar a tus clases.']::text[], 16),
   ('kit', 'accesorios', 'Kit Primera Clase', 12900, 'Todos', 'Gafas Junior, gorra de silicona y tapones.', 'Todo lo esencial para empezar: gafas Junior, gorra de silicona y tapones. Por separado cuesta ₡14.500, así que con el kit ahorra ₡1.600.', 'Es lo que pido para la primera clase. Con esto ya podés empezar.', array['Lila', 'Celeste', 'Rosa']::text[], array['Niño', 'Adulto']::text[], 'Talla de gorra', 'kit', 'recomendado', array['Incluye gafas Junior, gorra de silicona y tapones.', 'El kit cuesta ₡12.900; por separado suma ₡14.500.', 'Una opción práctica para tu primera clase.']::text[], 17)
 on conflict (id) do nothing;
+
+-- Paquetes mensuales (fuente de verdad del recomendador) --------------------------
+
+create table if not exists public.packages (
+  id serial primary key,
+  clases int not null check (clases > 0),
+  personas int not null check (personas between 1 and 3),
+  precio int not null check (precio >= 0),
+  activo boolean not null default true,
+  unique (clases, personas)
+);
+grant select on public.packages to anon, authenticated;
+grant all on public.packages to service_role;
+grant usage, select on sequence public.packages_id_seq to service_role;
+alter table public.packages enable row level security;
+drop policy if exists "paquetes publicos" on public.packages;
+create policy "paquetes publicos" on public.packages for select to anon, authenticated using (activo);
+drop policy if exists "profe edita paquetes" on public.packages;
+create policy "profe edita paquetes" on public.packages for all to authenticated
+  using (public.is_profe()) with check (public.is_profe());
+grant insert, update, delete on public.packages to authenticated;
+grant usage, select on sequence public.packages_id_seq to authenticated;
+
+insert into public.packages (clases, personas, precio) values
+  (4,1,37000),(4,2,58000),(4,3,75000),
+  (8,1,72000),(8,2,110000),(8,3,145000),
+  (12,1,98000),(12,2,145000),(12,3,190000)
+on conflict (clases, personas) do nothing;
+
+-- Solicitudes del recomendador de paquetes (solo las ve la profe) ------------------
+
+create table if not exists public.recommendation_requests (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  nombre text, contacto text,
+  objetivos text not null, experiencia text not null, disponibilidad text not null,
+  para_quien text, personas int,
+  paquete_clases int, paquete_personas int, paquete_precio int, tipo_clase text, razon text
+);
+grant all on public.recommendation_requests to service_role;
+grant select, delete on public.recommendation_requests to authenticated;
+alter table public.recommendation_requests enable row level security;
+drop policy if exists "profe ve solicitudes" on public.recommendation_requests;
+create policy "profe ve solicitudes" on public.recommendation_requests for select to authenticated using (public.is_profe());
+drop policy if exists "profe borra solicitudes" on public.recommendation_requests;
+create policy "profe borra solicitudes" on public.recommendation_requests for delete to authenticated using (public.is_profe());
+
+-- Mensajes de la página de contacto (cualquiera envía, solo la profe lee) -----------
+
+create table if not exists public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  nombre text not null check (char_length(nombre) between 1 and 100),
+  telefono text check (char_length(telefono) <= 30),
+  correo text check (char_length(correo) <= 255),
+  motivo text check (char_length(motivo) <= 60),
+  mensaje text not null check (char_length(mensaje) between 1 and 1500),
+  leido boolean not null default false
+);
+grant insert on public.contact_messages to anon, authenticated;
+grant select, update, delete on public.contact_messages to authenticated;
+grant all on public.contact_messages to service_role;
+alter table public.contact_messages enable row level security;
+drop policy if exists "enviar mensaje" on public.contact_messages;
+create policy "enviar mensaje" on public.contact_messages for insert to anon, authenticated with check (leido = false);
+drop policy if exists "profe lee mensajes" on public.contact_messages;
+create policy "profe lee mensajes" on public.contact_messages for select to authenticated using (public.is_profe());
+drop policy if exists "profe marca mensajes" on public.contact_messages;
+create policy "profe marca mensajes" on public.contact_messages for update to authenticated using (public.is_profe()) with check (public.is_profe());
+drop policy if exists "profe borra mensajes" on public.contact_messages;
+create policy "profe borra mensajes" on public.contact_messages for delete to authenticated using (public.is_profe());

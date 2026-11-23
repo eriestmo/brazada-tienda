@@ -281,7 +281,35 @@
     p { text-wrap:pretty; }
     .navlinks a { padding-block:12px; }
     .footer-links a { display:inline-block; padding-block:8px; }
-  </style>
+  
+    .select-wrap{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px 4px 3px 13px;font-size:.84rem;color:var(--muted);font-weight:600}
+    .select-wrap select{border:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;padding:6px 8px;min-height:36px;cursor:pointer}
+    .rec-shop{display:grid;grid-template-columns:minmax(0,1fr);min-width:0;gap:10px;border-radius:20px;background:var(--lila-soft);padding:16px 18px;margin-bottom:18px}
+    .rec-shop p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+    .rec-shop-row{display:flex;gap:8px}
+    .rec-shop-row input{flex:1;min-width:0;width:100%;box-sizing:border-box;min-height:46px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);padding:10px 16px;font:inherit}
+    .rec-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+    .rec-item{display:grid;gap:3px;text-align:left;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:12px 14px;cursor:pointer;font:inherit;font-size:.86rem}
+    .rec-item span:last-child{color:var(--muted)}.rec-price{font-weight:700;color:var(--lila-ink)}
+    .rec-tip{font-size:.85rem}.rec-err{color:var(--bad,#B42318);margin:0}
+    @media (max-width:720px){
+      .filters{grid-template-columns:1fr!important}
+      .filter-row.categories{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1*var(--gutter,16px));padding:2px var(--gutter,16px) 6px;scrollbar-width:none}
+      .filter-row.categories::-webkit-scrollbar{display:none}
+      .filter-row.categories .filter-chip{flex:0 0 auto;scroll-snap-align:start}
+      .filter-chip,.segmented button{min-height:40px}
+      .filter-row.selects{display:grid;grid-template-columns:1fr 1fr}
+      .select-wrap select{flex:1;min-width:0}
+      .search{min-height:46px;font-size:16px}
+      .rec-shop-row{flex-direction:column}.rec-shop-row .btn{width:100%}
+      .rec-shop-row input{font-size:16px}
+      .card-body h3{font-size:.98rem;line-height:1.2}
+      .product-short{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .btn{min-height:46px}
+    }
+    @media (max-width:720px){.product-dialog{width:100%;max-width:100%;margin:auto 0 0;border-radius:24px 24px 0 0;max-height:92dvh}}
+[hidden]{display:none!important}
+</style>
 </head>
 <body>
   <aside class="announcement" aria-label="Aviso">Entrega gratis en clase · Pago por SINPE Móvil · Envíos a todo el país</aside>
@@ -325,8 +353,10 @@
             <div class="segmented" id="audience-filter" aria-label="Filtrar por público"></div>
             <button class="filter-chip toggle" id="recommended-filter" type="button" aria-pressed="false">Recomendados por la profe</button>
           </div>
+          <div class="filter-row selects"><label class="select-wrap"><span>Talla</span><select id="size-filter" aria-label="Filtrar por talla"></select></label><label class="select-wrap"><span>Color</span><select id="color-filter" aria-label="Filtrar por color"></select></label></div>
           <input class="search" id="search" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
         </div>
+        <form class="rec-shop" id="rec-productos" hidden><div><strong>¿No sabés qué elegir?</strong><p>Contanos para quién es y qué necesitás, y te sugerimos productos.</p></div><div class="rec-shop-row"><input name="necesidad" required maxlength="500" placeholder="Ej.: mi hijo de 7 años empieza clases y se le empañan las gafas" aria-label="Describí lo que necesitás"><button class="btn btn-lila" type="submit">Recomendarme</button></div><div id="rec-out" aria-live="polite"></div></form>
         <p class="results" id="result-count" aria-live="polite"></p>
         <div class="grid" id="product-grid"></div>
         <div class="empty" id="empty-state" hidden><h3>No encontramos productos</h3><p>Probá con otra búsqueda o quitá los filtros.</p><button class="btn btn-outline" type="button" data-action="clear-filters">Quitar filtros</button></div>
@@ -358,7 +388,7 @@
             <h2>Profe Emily Duncan</h2>
             <p>Soy Emily, profesora de natación para niños y adultos. Todo lo que vendo aquí lo uso o lo recomiendo en clase, así que si tenés dudas con una talla o con qué gafas elegir, preguntame por WhatsApp.</p>
             <div class="facts"><span class="fact">Clases para niños y adultos</span><span class="fact">Asesoría de tallas sin costo</span><span class="fact">Entrega en la piscina</span></div>
-            <p><a class="ig-link" href="https://www.instagram.com/emily.natacion" target="_blank" rel="noopener">Seguila en Instagram: @emily.natacion</a> · <a class="ig-link" href="clases.html">Reservá una clase</a></p>
+            <p><a class="ig-link" href="https://www.instagram.com/emily.natacion" target="_blank" rel="noopener">Seguila en Instagram: @emily.natacion</a> · <a class="ig-link" href="clases.html">Reservá una clase</a> · <a class="ig-link" href="contacto.html">Contacto</a></p>
           </div>
         </article>
       </div>
@@ -455,7 +485,7 @@
       } catch (_) { /* sin conexión: se queda la lista de respaldo */ }
     }
 
-    const state = { category:"todo", audience:"Todos", recommended:false, search:"", activeProduct:null, selectedColor:0, selectedSize:"", quantity:1, view:"carrito", delivery:"clase", order:null };
+    const state = { size:"", color:"", category:"todo", audience:"Todos", recommended:false, search:"", activeProduct:null, selectedColor:0, selectedSize:"", quantity:1, view:"carrito", delivery:"clase", order:null };
     let cart = loadCart();
     const $ = (sel,root=document) => root.querySelector(sel);
     const $$ = (sel,root=document) => Array.from(root.querySelectorAll(sel));
@@ -500,7 +530,7 @@
       return `<article class="product-card">${tagHTML(p.tag,p.agotado)}<div class="art-tile">${draw(p.dibujo,c.main,c.accent,p.nombre)}</div><div class="card-body"><p class="card-kicker">${CAT_NAMES[p.cat]} · ${p.para}${p.para==="Niños"?'<span class="kids-badge">Emily Kids</span>':""}</p><h3>${escapeHTML(p.nombre)}</h3><p class="product-short">${escapeHTML(p.corto)}</p><span class="card-price">${money(p.precio)}</span><div class="swatches" role="img" aria-label="Colores disponibles">${p.colores.map(n=>colorSwatch(n)).join("")}</div></div><button class="card-hit" type="button" data-action="open-product" data-id="${p.id}" aria-label="Ver ${escapeHTML(p.nombre)}"></button></article>`;
     }
     function renderProducts() {
-      const list=PRODUCTS.filter(p=>(state.category==="todo"||p.cat===state.category)&&(state.audience==="Todos"||p.para==="Todos"||p.para===state.audience)&&(!state.recommended||p.tag==="recomendado")&&(`${p.nombre} ${p.corto} ${p.cat} ${p.colores.join(" ")}`.toLowerCase().includes(state.search.toLowerCase())));
+      const list=PRODUCTS.filter(p=>(state.category==="todo"||p.cat===state.category)&&(state.audience==="Todos"||p.para==="Todos"||p.para===state.audience)&&(!state.recommended||p.tag==="recomendado")&&(!state.size||(p.tallas||[]).includes(state.size))&&(!state.color||p.colores.includes(state.color))&&(`${p.nombre} ${p.corto} ${p.cat} ${p.colores.join(" ")}`.toLowerCase().includes(state.search.toLowerCase())));
       $("#product-grid").innerHTML=list.map(productCard).join("");
       $("#result-count").textContent=`${list.length} ${list.length===1?"producto encontrado":"productos encontrados"}`;
       $("#empty-state").hidden=list.length>0; $("#product-grid").hidden=list.length===0;
@@ -510,6 +540,9 @@
       $("#category-filters").innerHTML=cats.map(([id,label])=>`<button type="button" class="filter-chip" data-filter-category="${id}" aria-pressed="${state.category===id}">${label}</button>`).join("");
       $("#audience-filter").innerHTML=["Todos","Niños","Adultos"].map(x=>`<button type="button" data-audience="${x}" aria-pressed="${state.audience===x}">${x}</button>`).join("");
       $("#recommended-filter").setAttribute("aria-pressed",String(state.recommended));
+      const sizes=[...new Set(PRODUCTS.flatMap(p=>p.tallas||[]))],colors=[...new Set(PRODUCTS.flatMap(p=>p.colores))];
+      $("#size-filter").innerHTML=`<option value="">Todas</option>`+sizes.map(x=>`<option${x===state.size?" selected":""}>${escapeHTML(x)}</option>`).join("");
+      $("#color-filter").innerHTML=`<option value="">Todos</option>`+colors.map(x=>`<option${x===state.color?" selected":""}>${escapeHTML(x)}</option>`).join("");
       renderProducts();
     }
     function focusFirst(dialog) { requestAnimationFrame(()=>{const el=dialog.querySelector("button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])");if(el)el.focus();}); }
@@ -609,11 +642,13 @@
       if(action==="back-cart"){const f=$("#order-form");if(f)state.formData=Object.fromEntries(new FormData(f));state.view="carrito";renderCart();}
       if(action==="line-qty"){const line=cart[Number(el.dataset.index)];if(line){line.qty=Math.max(1,Math.min(10,line.qty+Number(el.dataset.delta)));saveCart();renderCount();renderCart();}}
       if(action==="remove-line"){cart.splice(Number(el.dataset.index),1);saveCart();renderCount();renderCart();}
-      if(action==="clear-filters"){state.category="todo";state.audience="Todos";state.recommended=false;state.search="";$("#search").value="";setupFilters();}
+      if(action==="clear-filters"){state.size="";state.color="";state.category="todo";state.audience="Todos";state.recommended=false;state.search="";$("#search").value="";setupFilters();}
       if(action==="copy")copyText(el.dataset.copy,el);
       if(action==="copy-message")copyText(state.order.message,el);
       if(action==="finish"){cart=[];saveCart();renderCount();state.view="carrito";state.order=null;$("#cart-dialog").close();renderCart();}
     });
+    $("#size-filter").addEventListener("change",e=>{state.size=e.target.value;renderProducts();});
+    $("#color-filter").addEventListener("change",e=>{state.color=e.target.value;renderProducts();});
     $("#recommended-filter").addEventListener("click",()=>{state.recommended=!state.recommended;$("#recommended-filter").setAttribute("aria-pressed",String(state.recommended));renderProducts();});
     $("#search").addEventListener("input",e=>{state.search=e.target.value.trim();renderProducts();});
     document.addEventListener("change",e=>{
@@ -625,6 +660,15 @@
     $("#product-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
     $("#cart-dialog").addEventListener("click",e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close();});
     setupFilters();renderCount();renderCart();renderFeature();loadProducts();
-  </script>
+  
+    document.getElementById("rec-productos").addEventListener("submit",async e=>{e.preventDefault();e.stopPropagation();const f=e.currentTarget,out=$("#rec-out"),btn=f.querySelector("button");
+      btn.disabled=true;btn.textContent="Buscando…";out.innerHTML="";
+      try{const base=PRODUCTS_URL.split("/rest/")[0];const r=await fetch(base+"/functions/v1/recomendar",{method:"POST",headers:{"Content-Type":"application/json",apikey:SUPABASE_KEY},body:JSON.stringify({tipo:"productos",necesidad:f.necesidad.value,catalogo:PRODUCTS.filter(p=>!p.agotado).map(p=>({id:p.id,nombre:p.nombre,precio:p.precio,para:p.para,corto:p.corto}))})});
+        const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||"No pudimos generar la recomendación.");
+        const items=(j.productos||[]).map(x=>({p:findProduct(x.id),r:x.razon})).filter(x=>x.p);
+        if(!items.length)throw Error("No encontramos productos para eso. Escribile a la profe por WhatsApp.");
+        out.innerHTML=`<div class="rec-list">${items.map(({p,r})=>`<button type="button" class="rec-item" data-action="open-product" data-id="${p.id}"><strong>${escapeHTML(p.nombre)}</strong><span class="rec-price">${money(p.precio)}</span><span>${escapeHTML(r)}</span></button>`).join("")}</div><p class="rec-tip">${escapeHTML(j.consejo||"")}</p>`;
+      }catch(err){out.innerHTML=`<p class="rec-err">${escapeHTML(err.message)}</p>`}finally{btn.disabled=false;btn.textContent="Recomendarme"}});
+</script>
 </body>
 </html>
